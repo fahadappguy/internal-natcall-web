@@ -29,7 +29,6 @@ const footerVariants: Record<string, FooterVariant> = {
         title: "Brand",
         links: [
           { label: "About Us", href: "/about" },
-          { label: "Updates", href: "/#updates" },
           { label: "Press", href: "/press" },
         ],
       },
@@ -58,7 +57,6 @@ const footerVariants: Record<string, FooterVariant> = {
         title: "Brand",
         links: [
           { label: "About Us", href: "/about" },
-          { label: "Updates", href: "/#updates" },
           { label: "Press", href: "/press" },
         ],
       },
@@ -87,7 +85,6 @@ const footerVariants: Record<string, FooterVariant> = {
         title: "Brand",
         links: [
           { label: "About Us", href: "/about" },
-          { label: "Updates", href: "/#updates" },
           { label: "Press", href: "/press" },
         ],
       },
@@ -117,7 +114,6 @@ const footerVariants: Record<string, FooterVariant> = {
         title: "BRAND",
         links: [
           { label: "About Us", href: "/about" },
-          { label: "Updates", href: "/#updates" },
           { label: "Press", href: "/press" },
         ],
       },

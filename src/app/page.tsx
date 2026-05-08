@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { BlogSection } from "@/components/blog-section";
 import { CookieBanner } from "@/components/cookie-banner";
 import { HeroParallax } from "@/components/hero-parallax";
 import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
@@ -714,8 +713,6 @@ export default async function HomePage() {
           ))}
         </RevealGroup>
       </section>
-
-      <BlogSection />
 
       <section
         id="download"
