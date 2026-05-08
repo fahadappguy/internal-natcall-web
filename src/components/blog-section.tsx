@@ -37,7 +37,7 @@ export function BlogSection() {
       <div className="text-center">
         <Reveal>
           <h2 className="mb-10 text-[clamp(2.25rem,4vw,36px)] font-extrabold leading-[1.2] tracking-[-0.01em] text-white">
-            Latest From Natcall
+            Blogs
           </h2>
         </Reveal>
       </div>
@@ -46,9 +46,9 @@ export function BlogSection() {
         {visiblePosts.map((post) => (
           <article
             key={post.title}
-            className="flex h-full gap-4 overflow-hidden rounded-lg border border-[#2a2a2a] bg-[#1c1c1c] p-3 transition duration-300 hover:-translate-y-1 hover:border-[#f6c617]/40"
+            className="flex h-full flex-col gap-4 overflow-hidden rounded-lg border border-[#2a2a2a] bg-[#1c1c1c] p-3 transition duration-300 hover:-translate-y-1 hover:border-[#f6c617]/40 sm:flex-row"
           >
-            <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-md bg-[#111111] sm:h-28 sm:w-32">
+            <div className="relative aspect-[16/9] w-full shrink-0 overflow-hidden rounded-md bg-[#111111] sm:h-28 sm:w-32 sm:aspect-auto">
               <Image
                 src={post.image}
                 alt=""
@@ -77,7 +77,7 @@ export function BlogSection() {
           <button
             type="button"
             onClick={() => setShowAll((value) => !value)}
-            className="inline-flex h-11 items-center justify-center rounded-full border border-[#383838] bg-[#151515] px-7 text-sm font-semibold text-white transition hover:border-[#f6c617]/70 hover:text-[#f6c617]"
+            className="inline-flex h-11 w-full max-w-[220px] items-center justify-center rounded-full border border-[#383838] bg-[#151515] px-7 text-sm font-semibold text-white transition hover:border-[#f6c617]/70 hover:text-[#f6c617]"
             aria-expanded={showAll}
           >
             {showAll ? "Show less" : "Show more"}

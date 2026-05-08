@@ -83,30 +83,30 @@ export function HeroParallax() {
 
       <motion.div
         style={{ y: floatY, scale: floatScale }}
-        className="relative h-[500px] w-[250px] overflow-hidden rounded-[32px] border-[6px] border-[#2a2a2a] bg-black shadow-2xl lg:rounded-[40px] lg:border-[8px]"
+        className="relative h-[390px] w-[195px] overflow-hidden rounded-[30px] border-[6px] border-[#2a2a2a] bg-black shadow-2xl sm:h-[440px] sm:w-[220px] lg:h-[500px] lg:w-[250px] lg:rounded-[40px] lg:border-[8px]"
         transition={{ type: "spring", stiffness: 140, damping: 25 }}
       >
         <div className="absolute top-0 flex h-8 w-full items-end justify-center bg-black pb-1">
           <div className="h-4 w-20 rounded-full bg-black" />
         </div>
-        <div className="flex h-full flex-col bg-[#111111] px-6 pb-6 pt-12">
-          <div className="mb-8 text-center">
+        <div className="flex h-full flex-col bg-[#111111] px-4 pb-5 pt-10 sm:px-6 sm:pb-6 sm:pt-12">
+          <div className="mb-6 text-center sm:mb-8">
             <p className="text-xs text-[#aaaaaa]">Calling...</p>
             <p className="mt-1 text-xl font-bold text-white">Nigeria</p>
           </div>
 
-          <div className="grid grid-cols-3 gap-4 place-items-center">
+          <div className="grid grid-cols-3 place-items-center gap-3 sm:gap-4">
             {Array.from({ length: 6 }, (_, index) => (
               <span
                 key={index}
-                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[#2a2a2a] bg-[#1c1c1c] text-sm font-bold text-white"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#2a2a2a] bg-[#1c1c1c] text-sm font-bold text-white sm:h-12 sm:w-12"
               >
                 {index + 1}
               </span>
             ))}
           </div>
 
-          <span className="mt-auto mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-[#22c55e] text-white shadow-[0_18px_36px_rgba(37,196,91,0.3)]">
+          <span className="mx-auto mt-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#22c55e] text-white shadow-[0_18px_36px_rgba(37,196,91,0.3)] sm:h-16 sm:w-16">
             <svg
               aria-hidden="true"
               className="h-5 w-5"

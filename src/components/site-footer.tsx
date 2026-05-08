@@ -204,10 +204,10 @@ export function SiteFooter() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full border-t border-[#2a2a2a] bg-[#0d0d0d] pb-10 pt-20">
-      <div className="mx-auto w-full max-w-[1200px] px-8">
-        <div className="grid justify-items-center gap-12 text-center md:grid-cols-2 md:text-left md:justify-items-start xl:grid-cols-[1.25fr_repeat(3,minmax(0,1fr))]">
-          <div className="max-w-[220px]">
+    <footer className="w-full border-t border-[#2a2a2a] bg-[#0d0d0d] pb-10 pt-14 sm:pt-20">
+      <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
+        <div className="grid justify-items-center gap-9 text-center sm:grid-cols-2 md:gap-12 md:text-left md:justify-items-start xl:grid-cols-[1.25fr_repeat(3,minmax(0,1fr))]">
+          <div className="max-w-[280px]">
             <h2 className="text-lg font-semibold tracking-[-0.03em] text-white">Natcall</h2>
             <p className="mt-4 text-[13px] leading-6 text-[#aaaaaa]">{variant.lead}</p>
           </div>
@@ -226,14 +226,14 @@ export function SiteFooter() {
           ))}
         </div>
 
-        <div className="mt-12 grid gap-6 rounded-xl border border-[#2a2a2a] bg-[#151515] p-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:p-6">
+        <div className="mt-10 grid gap-6 rounded-xl border border-[#2a2a2a] bg-[#151515] p-5 text-center sm:mt-12 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:p-6 lg:text-left">
           <div>
             <h2 className="text-[1rem] font-semibold text-white">Join the Natcall newsletter</h2>
-            <p className="mt-2 max-w-xl text-[13px] leading-6 text-[#aaaaaa]">
+            <p className="mx-auto mt-2 max-w-xl text-[13px] leading-6 text-[#aaaaaa] lg:mx-0">
               Get rate updates, feature news, and calling tips for staying close to family.
             </p>
           </div>
-          <form className="flex w-full flex-col gap-3 sm:w-auto sm:min-w-[360px] sm:flex-row">
+          <form className="flex w-full flex-col gap-3 sm:flex-row lg:w-auto lg:min-w-[360px]">
             <label htmlFor="newsletter-email" className="sr-only">
               Email address
             </label>
@@ -254,7 +254,7 @@ export function SiteFooter() {
           </form>
         </div>
 
-        <div className="mt-12 flex flex-col items-center gap-4 border-t border-[#2a2a2a] pt-8 text-center sm:flex-row sm:justify-between sm:text-left">
+        <div className="mt-10 flex flex-col items-center gap-4 border-t border-[#2a2a2a] pt-8 text-center sm:mt-12 sm:flex-row sm:justify-between sm:text-left">
           <p className="text-[12px] text-[#aaaaaa]">
             Copyright {foundingYear}-{currentYear} Natcall. All rights
             reserved.
@@ -286,7 +286,7 @@ export function SiteFooter() {
                 </svg>
               </span>
             ) : null}
-            </div>
+          </div>
         </div>
       </div>
     </footer>

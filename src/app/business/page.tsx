@@ -84,7 +84,7 @@ function CheckIcon() {
 export default function BusinessPage() {
   return (
     <main className="pb-12 pt-4">
-      <section className="mx-auto flex min-h-[calc(100vh-73px)] w-full max-w-[1200px] flex-col justify-center px-4 py-6 sm:px-6 lg:px-8">
+      <section className="mx-auto flex w-full max-w-[1200px] flex-col justify-center px-4 py-8 sm:min-h-[calc(100vh-73px)] sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <span className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[#f6c617]">
             Business plans
@@ -98,11 +98,11 @@ export default function BusinessPage() {
           </p>
         </div>
 
-        <div className="mt-6 grid gap-4 lg:grid-cols-4">
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {plans.map((plan) => (
             <article
               key={plan.name}
-              className="relative flex min-h-[390px] flex-col rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] p-4 transition duration-300 hover:border-[#f6c617]/45"
+              className="relative flex min-h-[340px] flex-col rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] p-4 transition duration-300 hover:border-[#f6c617]/45 sm:min-h-[390px]"
             >
               <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#f6c617]">
                 {plan.eyebrow}
@@ -127,7 +127,7 @@ export default function BusinessPage() {
 
               <Link
                 href="/contact"
-                className="mt-6 inline-flex h-10 items-center justify-center rounded-full border border-[#383838] px-5 text-[13px] font-bold text-white transition hover:border-[#f6c617]/70 hover:text-[#f6c617]"
+                className="mt-auto inline-flex h-10 items-center justify-center rounded-full border border-[#383838] px-5 text-[13px] font-bold text-white transition hover:border-[#f6c617]/70 hover:text-[#f6c617]"
               >
                 {plan.cta}
               </Link>

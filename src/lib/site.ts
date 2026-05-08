@@ -400,7 +400,7 @@ export const termsSections = [
   {
     title: "6. Limitation of Liability",
     paragraphs: [
-      "TO THE MAXIMUM EXTENT PERMITTED BY LAW, NATCALL SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES.",
+      "To the maximum extent permitted by law, Natcall shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses.",
       "Our total liability for any claim arising out of or relating to these terms or the Service shall not exceed the amount paid by you to Natcall in the past six months.",
     ],
   },

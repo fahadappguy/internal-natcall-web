@@ -41,33 +41,33 @@ const kitItems = [
 
 export default function PressPage() {
   return (
-    <main className="px-6 pb-20 pt-24">
+    <main className="px-4 pb-16 pt-24 sm:px-6 sm:pb-20">
       <div className="mx-auto max-w-[1180px]">
-        <section className="overflow-hidden rounded-3xl border border-[#2a2a2a] bg-[#0d0d0d]">
+        <section className="overflow-hidden rounded-2xl border border-[#2a2a2a] bg-[#0d0d0d] sm:rounded-3xl">
           <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_360px]">
             <div className="p-6 sm:p-8 lg:p-10">
               <span className="inline-flex rounded-[6px] border border-[#3c3418] bg-[#19150b] px-3 py-1 text-[13px] font-medium text-[#f6c617]">
                 Press & Media Kit
               </span>
-              <h1 className="mt-5 max-w-4xl text-[clamp(2.7rem,6vw,64px)] font-extrabold leading-[1.02] text-white">
+              <h1 className="mt-5 max-w-4xl text-[clamp(2.25rem,6vw,64px)] font-extrabold leading-[1.06] text-white sm:leading-[1.02]">
                 The calling app helping global families stay close.
               </h1>
-              <p className="mt-5 max-w-3xl text-[17px] leading-8 text-[#c9c9c9]">
+              <p className="mt-5 max-w-3xl text-[15px] leading-7 text-[#c9c9c9] sm:text-[17px] sm:leading-8">
                 Natcall is an international calling service created for
                 diaspora communities who need affordable rates, clear voice
                 quality, and a simpler way to call home.
               </p>
 
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap">
                 <a
                   href="mailto:natcallapp@gmail.com?subject=Natcall%20Media%20Inquiry"
-                  className="inline-flex items-center justify-center rounded-full bg-[#f6c617] px-7 py-2 text-sm font-bold text-black transition hover:brightness-95"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-[#f6c617] px-7 py-3 text-sm font-bold text-black transition hover:brightness-95 sm:w-auto sm:py-2"
                 >
                   Contact Media Team
                 </a>
                 <Link
                   href="/about"
-                  className="inline-flex items-center justify-center rounded-full border border-[#383838] px-7 py-2 text-sm font-semibold text-white transition hover:border-[#f6c617]/60 hover:text-[#f6c617]"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-[#383838] px-7 py-3 text-sm font-semibold text-white transition hover:border-[#f6c617]/60 hover:text-[#f6c617] sm:w-auto sm:py-2"
                 >
                   Read Our Story
                 </Link>
@@ -166,7 +166,7 @@ export default function PressPage() {
             </p>
             <a
               href="mailto:natcallapp@gmail.com?subject=Natcall%20Press%20Request"
-              className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[#f6c617] px-6 py-3 text-sm font-bold text-black transition hover:brightness-95"
+              className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[#f6c617] px-4 py-3 text-sm font-bold text-black transition hover:brightness-95"
             >
               natcallapp@gmail.com
             </a>

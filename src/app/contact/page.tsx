@@ -11,7 +11,7 @@ export const metadata = createMetadata({
 export default function ContactPage() {
   return (
     <main className="px-4 pb-8 pt-0 sm:px-6 lg:px-8">
-      <section className="mx-auto grid min-h-[calc(100vh-5rem)] w-full max-w-[1320px] overflow-hidden rounded-b-[24px] bg-[#101010] shadow-[0_28px_90px_rgba(0,0,0,0.18)] lg:grid-cols-[0.98fr_1.02fr]">
+      <section className="mx-auto grid w-full max-w-[1320px] overflow-hidden rounded-b-[24px] bg-[#101010] shadow-[0_28px_90px_rgba(0,0,0,0.18)] lg:min-h-[calc(100vh-5rem)] lg:grid-cols-[0.98fr_1.02fr]">
         <div className="flex flex-col justify-center px-5 py-8 sm:px-8 lg:px-10 lg:py-8 xl:px-12">
           <Reveal>
             <span className="inline-flex w-fit items-center gap-2 rounded-full border border-[#5b4a08] bg-[#1b1708] px-4 py-1.5 text-[13px] font-semibold text-[#f6c617]">
@@ -21,7 +21,7 @@ export default function ContactPage() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <h1 className="mt-6 max-w-[520px] text-[clamp(2.25rem,4vw,48px)] font-extrabold leading-[1.08] tracking-normal text-white">
+            <h1 className="mt-6 max-w-[520px] text-[clamp(2rem,4vw,48px)] font-extrabold leading-[1.08] tracking-normal text-white">
               Need help with your{" "}
               <span className="text-[#f6c617]">calls?</span>
             </h1>
@@ -36,7 +36,7 @@ export default function ContactPage() {
 
           <Reveal delay={0.3}>
             <div className="mt-8 max-w-[520px] rounded-[18px] border border-white/8 bg-white/[0.035] p-5 shadow-[0_24px_80px_rgba(0,0,0,0.2)] backdrop-blur">
-              <div className="flex items-center gap-4">
+              <div className="flex items-start gap-4">
                 <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-[14px] bg-[#f6c617] text-black shadow-[0_18px_36px_rgba(246,198,23,0.18)]">
                   <svg
                     aria-hidden="true"
@@ -57,7 +57,7 @@ export default function ContactPage() {
                   <p className="text-[13px] font-semibold uppercase tracking-[0.08em] text-[#8f8f8f]">
                     Direct support
                   </p>
-                  <p className="mt-1 text-[17px] font-bold text-white">
+                  <p className="mt-1 break-all text-[15px] font-bold text-white sm:text-[17px]">
                     support@natcall.app
                   </p>
                 </div>
@@ -183,7 +183,7 @@ export default function ContactPage() {
                 </svg>
               </button>
 
-              <p className="flex items-center justify-center gap-3 text-center text-[13px] font-semibold text-[#777777] sm:text-[14px]">
+              <p className="flex items-center justify-center gap-3 text-center text-[13px] font-semibold leading-5 text-[#777777] sm:text-[14px]">
                 <span className="h-2.5 w-2.5 rounded-full bg-[#47e384]" />
                 Team is online - typically replies within 2 hours
               </p>

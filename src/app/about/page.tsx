@@ -10,9 +10,9 @@ export const metadata = createMetadata({
 
 export default function AboutPage() {
   return (
-    <main className="px-6 pb-20 pt-6">
+    <main className="px-4 pb-16 pt-4 sm:px-6 sm:pb-20 sm:pt-6">
       <div className="mx-auto max-w-[1100px]">
-        <section className="relative min-h-[calc(100vh-112px)] overflow-hidden rounded-3xl border border-[#2a2a2a] bg-black">
+        <section className="relative min-h-[560px] overflow-hidden rounded-2xl border border-[#2a2a2a] bg-black sm:min-h-[calc(100vh-112px)] sm:rounded-3xl">
           <Image
             src="/images/generated/natcall-hero-calling.png"
             alt="Natcall phone calling experience on a desk"
@@ -25,18 +25,18 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.96)_0%,rgba(0,0,0,0.86)_42%,rgba(0,0,0,0.58)_100%)]" />
           <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#111111] to-transparent" />
 
-          <div className="relative flex min-h-[calc(100vh-112px)] flex-col justify-center px-6 py-5 sm:px-8 lg:px-10 lg:py-7">
+          <div className="relative flex min-h-[560px] flex-col justify-center px-5 py-8 sm:min-h-[calc(100vh-112px)] sm:px-8 lg:px-10 lg:py-7">
             <div className="max-w-[760px]">
               <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-2 text-[13px] font-medium text-[#f6c617] backdrop-blur-md">
                 <span className="h-2 w-2 rounded-full bg-[#f6c617]" />
                 About Natcall
               </span>
 
-              <h1 className="mt-5 max-w-[760px] text-[clamp(2.55rem,6vw,62px)] font-extrabold leading-[0.98] tracking-[-0.035em] text-white">
+              <h1 className="mt-5 max-w-[760px] text-[clamp(2.25rem,6vw,62px)] font-extrabold leading-[1.04] tracking-[-0.02em] text-white sm:leading-[0.98] sm:tracking-[-0.035em]">
                 Affordable calling home, built by people who understand the distance.
               </h1>
 
-              <div className="mt-5 max-w-[690px] border-l-2 border-[#f6c617] pl-5">
+              <div className="mt-5 max-w-[690px] border-l-2 border-[#f6c617] pl-4 sm:pl-5">
                 <p className="text-[15px] leading-7 text-[#dedede] sm:text-[16px]">
                   NatCall was founded to solve a real problem. We grew up in the
                   diaspora and experienced the pain of expensive international
@@ -50,7 +50,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="grid gap-6 py-16 md:grid-cols-2">
+        <section className="grid gap-6 py-12 sm:py-16 md:grid-cols-2">
           <article className="rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] p-6">
             <h2 className="text-2xl font-bold text-white">Mission</h2>
             <p className="mt-4 text-[16px] leading-8 text-[#c8c8c8]">
@@ -76,16 +76,16 @@ export default function AboutPage() {
           </article>
         </section>
 
-        <section className="grid gap-4 border-y border-[#2a2a2a] py-12 sm:grid-cols-2 lg:grid-cols-4">
+        <section className="grid gap-4 border-y border-[#2a2a2a] py-10 sm:grid-cols-2 sm:py-12 lg:grid-cols-4">
           {aboutStats.map((stat) => (
-            <article key={stat.label} className="rounded-xl bg-[#151515] p-5">
+            <article key={stat.label} className="rounded-xl bg-[#151515] p-5 text-center sm:text-left">
               <p className="text-3xl font-extrabold text-[#f6c617]">{stat.value}</p>
               <p className="mt-2 text-sm text-[#aaaaaa]">{stat.label}</p>
             </article>
           ))}
         </section>
 
-        <section className="py-16">
+        <section className="py-12 sm:py-16">
           <h2 className="text-3xl font-bold text-white">The Team</h2>
           <div className="mt-8 grid gap-5 md:grid-cols-2">
             {team.map((member) => (
@@ -100,7 +100,7 @@ export default function AboutPage() {
 
         <section>
           <h2 className="text-3xl font-bold text-white">Our Values</h2>
-          <div className="mt-8 grid gap-5 md:grid-cols-4">
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((value) => (
               <article key={value.title} className="rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] p-5">
                 <p className="font-semibold text-white">{value.title}</p>

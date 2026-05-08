@@ -59,7 +59,7 @@ export function SiteHeader() {
   return (
     <LazyMotion features={domAnimation}>
       <header className="fixed inset-x-0 top-0 z-40 border-b border-[#2a2a2a] bg-[#111111]/80 backdrop-blur-md">
-        <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-6 py-4">
+        <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-4 py-4 sm:px-6">
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-xl font-bold tracking-[-0.03em] text-white"
@@ -280,7 +280,7 @@ export function SiteHeader() {
               }
               className="max-h-[calc(100vh-73px)] overflow-y-auto border-t border-[#2a2a2a] bg-[#111111] lg:hidden"
             >
-              <div className="mx-auto grid w-full max-w-[1200px] gap-2 px-4 py-4 sm:px-6">
+              <div className="mx-auto grid w-full max-w-[1200px] gap-2 px-4 py-4 pb-6 sm:px-6">
                 {navLinks.map((link) => {
                   const active = isActiveHref(pathname, link.href);
 
@@ -311,7 +311,7 @@ export function SiteHeader() {
                         : "bg-[#1c1c1c] text-[#d0d0d0] hover:text-white"
                     }`}
                   >
-                    About Us
+                    Our Story
                     <svg
                       aria-hidden="true"
                       className={`h-4 w-4 transition ${mobileAboutOpen ? "rotate-180" : ""}`}
@@ -369,7 +369,7 @@ export function SiteHeader() {
                         : "bg-[#1c1c1c] text-[#d0d0d0] hover:text-white"
                     }`}
                   >
-                    Explore
+                    Support Hub
                     <svg
                       aria-hidden="true"
                       className={`h-4 w-4 transition ${mobileExploreOpen ? "rotate-180" : ""}`}
