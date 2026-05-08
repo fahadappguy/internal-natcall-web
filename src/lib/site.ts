@@ -2,14 +2,74 @@ import type { Metadata } from "next";
 
 type TrustIcon = "globe" | "signal" | "ban" | "bolt";
 type HowItWorksIcon = "download" | "credits" | "phone";
-type FeatureIcon = "rates" | "quality" | "topup" | "world" | "nosub" | "contacts";
+type FeatureIcon =
+  | "rates"
+  | "quality"
+  | "topup"
+  | "world"
+  | "nosub"
+  | "contacts";
+
+type AppStoreLookupResponse = {
+  resultCount: number;
+  results: Array<{
+    averageUserRating?: number;
+    userRatingCount?: number;
+  }>;
+};
 
 export const siteConfig = {
   name: "Natcall",
   url: "https://natcall.com",
   description:
     "Crystal clear international calling with transparent pricing, premium voice quality, and instant top-up.",
+  social: {
+    instagram: "https://www.instagram.com/natcallapp",
+    twitter: "https://twitter.com/natcallapp",
+    linkedin: "https://www.linkedin.com/company/natcall",
+  },
 };
+
+export const fallbackAppStoreRating = {
+  value: "4.8/5",
+  count: null as number | null,
+};
+
+export async function getAppStoreRating() {
+  const appId = process.env.APPLE_APP_ID;
+  const country = process.env.APPLE_APP_COUNTRY ?? "us";
+
+  if (!appId) {
+    return fallbackAppStoreRating;
+  }
+
+  try {
+    const response = await fetch(
+      `https://itunes.apple.com/lookup?id=${appId}&country=${country}`,
+      {
+        next: { revalidate: 60 * 60 * 12 },
+      },
+    );
+
+    if (!response.ok) {
+      return fallbackAppStoreRating;
+    }
+
+    const data = (await response.json()) as AppStoreLookupResponse;
+    const app = data.results[0];
+
+    if (!app?.averageUserRating) {
+      return fallbackAppStoreRating;
+    }
+
+    return {
+      value: `${app.averageUserRating.toFixed(1)}/5`,
+      count: app.userRatingCount ?? null,
+    };
+  } catch {
+    return fallbackAppStoreRating;
+  }
+}
 
 type MetadataInput = {
   title: string;
@@ -98,21 +158,72 @@ export const features: Array<{ icon: FeatureIcon; title: string; copy: string }>
 export const testimonials = [
   {
     quote: '"Finally an app that actually has clear lines to Lagos. Been using it for 6 months now!"',
-    initials: "AO",
     name: "Amara O.",
-    meta: "Verified User",
+    meta: "Calls Nigeria weekly",
+    photo: "/images/testimonials/amara-o.png",
   },
   {
     quote: '"The top-up is instant. I never have to worry about my credits running out mid-call."',
-    initials: "MR",
     name: "Maria R.",
-    meta: "Verified User",
+    meta: "Calls Colombia daily",
+    photo: "/images/testimonials/maria-r.png",
   },
   {
     quote: '"Best rates for calling Accra. Crystal clear quality every single time, 10/10."',
-    initials: "KS",
     name: "Kwame S.",
-    meta: "Verified User",
+    meta: "Calls Ghana weekly",
+    photo: "/images/testimonials/kwame-s.png",
+  },
+  {
+    quote: '"My parents can hear me clearly now, and I spend a fraction of what my carrier used to charge."',
+    name: "Priya M.",
+    meta: "Calls India every weekend",
+    photo: "/images/testimonials/priya-m.png",
+  },
+  {
+    quote: '"The app makes long family calls feel simple again. Transparent rates, no surprise deductions."',
+    name: "Lina C.",
+    meta: "Calls the Philippines",
+    photo: "/images/testimonials/lina-c.png",
+  },
+  {
+    quote: '"I use Natcall for business and family calls. The quality has been reliable across countries."',
+    name: "Samir A.",
+    meta: "Calls Morocco and France",
+    photo: "/images/testimonials/samir-a.png",
+  },
+];
+
+export const pricingRates = [
+  {
+    country: "Nigeria",
+    natcall: "$0.07/min",
+    carrier: "$0.89/min",
+    savings: "92%",
+  },
+  {
+    country: "Ghana",
+    natcall: "$0.08/min",
+    carrier: "$0.75/min",
+    savings: "89%",
+  },
+  {
+    country: "India",
+    natcall: "$0.03/min",
+    carrier: "$0.35/min",
+    savings: "91%",
+  },
+  {
+    country: "Ethiopia",
+    natcall: "$0.12/min",
+    carrier: "$1.05/min",
+    savings: "89%",
+  },
+  {
+    country: "Philippines",
+    natcall: "$0.05/min",
+    carrier: "$0.49/min",
+    savings: "90%",
   },
 ];
 
@@ -152,15 +263,27 @@ export const faqItems = [
     answer:
       "You can contact our support team by email and we will help with account issues, call quality concerns, top-up questions, or anything else you need.",
   },
+  {
+    question: "Are my calls encrypted?",
+    answer:
+      "Natcall protects account access, payments, and app traffic with modern encryption. We also monitor calling routes for reliability and suspicious activity.",
+  },
+  {
+    question: "Can I cancel or request a refund?",
+    answer:
+      "You can stop using Natcall at any time. Refund requests are reviewed case by case, especially when a verified technical issue prevented successful calling.",
+  },
 ];
 
 export const privacySections = [
   { id: "introduction", label: "1. Introduction" },
   { id: "collection", label: "2. Data Collection" },
   { id: "usage", label: "3. How We Use Data" },
-  { id: "partners", label: "4. Third-Party Partners" },
-  { id: "rights", label: "5. Your Rights" },
-  { id: "contact", label: "6. Contact Us" },
+  { id: "security", label: "4. Data Security" },
+  { id: "partners", label: "5. Third-Party Partners" },
+  { id: "rights", label: "6. Your Rights" },
+  { id: "gdpr", label: "7. GDPR Compliance" },
+  { id: "contact", label: "8. Contact Us" },
 ];
 
 export const privacyHighlights = [
@@ -171,6 +294,14 @@ export const privacyHighlights = [
   {
     title: "Technical Data",
     copy: "This includes your IP address, device type, operating system, and app usage logs to optimize our network routing.",
+  },
+  {
+    title: "Calling Data",
+    copy: "We process phone numbers dialed, call duration, destination country, route quality, and credit usage to connect calls and calculate transparent charges.",
+  },
+  {
+    title: "Billing Data",
+    copy: "Payment providers process transaction details. Natcall stores payment status, receipt metadata, and credit balance history, not full card numbers.",
   },
 ];
 
@@ -205,6 +336,18 @@ export const privacyRights = [
     title: "Portability",
     copy: "Transfer your data to another service provider easily.",
   },
+  {
+    title: "Correction",
+    copy: "Ask us to correct inaccurate account information.",
+  },
+  {
+    title: "Restriction",
+    copy: "Request limits on certain processing where applicable by law.",
+  },
+  {
+    title: "Objection",
+    copy: "Object to processing based on legitimate interests or marketing.",
+  },
 ];
 
 export const termsSections = [
@@ -216,25 +359,26 @@ export const termsSections = [
     ],
   },
   {
-    title: "2. Use of Service",
+    title: "2. User Responsibilities",
     paragraphs: [
-      "Natcall grants you a limited, non-exclusive, non-transferable, revocable license to use the Service for your personal or internal business use. You must be at least 18 years old to create an account. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.",
+      "Natcall grants you a limited, non-exclusive, non-transferable, revocable license to use the Service for your personal or internal business use. You must be at least 18 years old to create an account. You are responsible for maintaining accurate account information, protecting your credentials, and for all activity that occurs under your account.",
       "The Service requires a stable internet connection for optimal performance. Natcall is not responsible for any data charges incurred from your mobile provider while using our applications.",
     ],
   },
   {
-    title: "3. Payments & Refunds",
+    title: "3. Payments, Refunds & Cancellations",
     paragraphs: [
-      "Natcall operates on a pre-paid credit system or subscription basis. All fees are quoted in USD unless otherwise stated. Credits purchased for international calling are valid for the duration specified at the time of purchase.",
+      "Natcall operates on a prepaid credit system or subscription basis. All fees are quoted in USD unless otherwise stated. Credits purchased for international calling are available in your account after payment confirmation.",
     ],
     bullets: [
       "Subscription fees are billed at the beginning of the billing cycle.",
-      "Refunds are handled on a case-by-case basis and are generally only issued for technical failures of the Service.",
+      "Refunds are handled case by case and are generally issued when a verified technical failure prevented successful use of paid credits.",
+      "You may cancel subscriptions or automated top-ups through your account settings or the relevant app store billing controls.",
       "Automated top-ups can be disabled at any time through your account settings.",
     ],
   },
   {
-    title: "4. Prohibited Use",
+    title: "4. Acceptable Use Policy",
     paragraphs: [
       "You agree not to use the Service for any unlawful purpose. Prohibited activities include, but are not limited to:",
     ],
@@ -246,8 +390,9 @@ export const termsSections = [
     ],
   },
   {
-    title: "5. Termination",
+    title: "5. Service Modifications & Termination",
     paragraphs: [
+      "Natcall may modify calling rates, routes, app features, supported countries, or service availability as network, legal, and carrier conditions change. We aim to provide notice for material changes when practical.",
       "Natcall reserves the right to terminate or suspend your account and access to the Service at our sole discretion, without notice, for conduct that we believe violates these Terms of Service or is harmful to other users of the Service, us, or third parties, or for any other reason.",
       "Upon termination, your right to use the Service will immediately cease. Any remaining credits may be forfeited unless required otherwise by applicable law.",
     ],
@@ -258,5 +403,96 @@ export const termsSections = [
       "TO THE MAXIMUM EXTENT PERMITTED BY LAW, NATCALL SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES.",
       "Our total liability for any claim arising out of or relating to these terms or the Service shall not exceed the amount paid by you to Natcall in the past six months.",
     ],
+  },
+  {
+    title: "7. Dispute Resolution",
+    paragraphs: [
+      "If a dispute arises, please contact us first so we can try to resolve the issue informally. If we cannot resolve it, disputes will be handled through binding arbitration or small claims court where permitted by applicable law.",
+      "You agree to bring claims only on your own behalf and not as part of a class or representative action, unless applicable law gives you rights that cannot be waived.",
+    ],
+  },
+];
+
+export const aboutStats = [
+  { value: "500,000+", label: "users worldwide" },
+  { value: "200+", label: "countries supported" },
+  { value: "10M+", label: "minutes called" },
+  { value: "99.9%", label: "call success rate" },
+];
+
+export const values = [
+  {
+    title: "Transparency",
+    copy: "No hidden fees, no surprises",
+  },
+  {
+    title: "Quality",
+    copy: "HD voice quality on every call",
+  },
+  {
+    title: "Affordability",
+    copy: "Up to 90% cheaper than local carriers",
+  },
+  {
+    title: "Trust",
+    copy: "Your data is secure and private",
+  },
+];
+
+export const team = [
+  {
+    name: "Yonatan Rezene",
+    role: "Founder & CEO",
+    bio: "Leads Natcall's mission, customer promise, and diaspora-first product vision.",
+  },
+  {
+    name: "Hafiz Fahad",
+    role: "Lead Developer",
+    bio: "Builds the Natcall platform, app experience, and reliable calling workflows.",
+  },
+];
+
+export const blogPosts = [
+  {
+    title: "Why Natcall Was Built for Diaspora Families",
+    date: "May 7, 2026",
+    excerpt:
+      "A note from the team on affordability, clear calling, and why staying connected home should be simple.",
+    image: "/images/generated/natcall-hero-calling.png",
+  },
+  {
+    title: "How We Keep International Calling Rates Transparent",
+    date: "April 28, 2026",
+    excerpt:
+      "A practical look at destination pricing, prepaid credits, and how Natcall avoids hidden fees.",
+    image: "/images/mockups/billing-desktop.png",
+  },
+  {
+    title: "Improving HD Voice Routes Across 200+ Countries",
+    date: "April 12, 2026",
+    excerpt:
+      "Product updates focused on lower latency, better route monitoring, and clearer conversations.",
+    image: "/images/mockups/audio-mobile.png",
+  },
+  {
+    title: "What to Check Before Calling Family Abroad",
+    date: "March 26, 2026",
+    excerpt:
+      "Quick tips for better call quality, stronger connections, and fewer interruptions during long conversations.",
+    image: "/images/mockups/contacts-mobile.png",
+  },
+  {
+    title: "New Business Calling Plans Are Coming",
+    date: "March 10, 2026",
+    excerpt:
+      "A preview of shared credits, usage reporting, and team calling features for growing companies.",
+    image: "/images/mockups/account-desktop.png",
+  },
+  {
+    title: "How Natcall Protects Customer Data",
+    date: "February 18, 2026",
+    excerpt:
+      "A closer look at encrypted traffic, restricted access, and the security practices behind Natcall.",
+    image: "/images/privacy.png",
   },
 ];

@@ -53,6 +53,30 @@ const highlightIcons = [
       strokeWidth="1.7"
     />
   </svg>,
+  <svg
+    key="call"
+    aria-hidden="true"
+    className="h-7 w-7"
+    viewBox="0 0 24 24"
+    fill="none"
+  >
+    <path
+      d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.2Z"
+      stroke="currentColor"
+      strokeLinejoin="round"
+      strokeWidth="1.7"
+    />
+  </svg>,
+  <svg
+    key="billing"
+    aria-hidden="true"
+    className="h-7 w-7"
+    viewBox="0 0 24 24"
+    fill="none"
+  >
+    <rect x="4.5" y="6.5" width="15" height="11" rx="2.2" stroke="currentColor" strokeWidth="1.7" />
+    <path d="M4.8 10.3h14.4M8.4 14h3.1" stroke="currentColor" strokeLinecap="round" strokeWidth="1.7" />
+  </svg>,
 ];
 
 export default function PrivacyPolicyPage() {
@@ -72,7 +96,7 @@ export default function PrivacyPolicyPage() {
         </Reveal>
         <Reveal delay={0.1}>
           <p className="mt-3 text-[1rem] text-[#c2b8aa]">
-            Last updated: April 2024
+            Last updated: May 2026
           </p>
         </Reveal>
       </section>
@@ -107,8 +131,9 @@ export default function PrivacyPolicyPage() {
                 </p>
                 <p className="mt-4 text-[15px] leading-9 text-[#d3d3d3]">
                   We are committed to ensuring that your data is handled with
-                  the highest level of security and in compliance with
-                  international data protection regulations (GDPR, CCPA).
+                  strong security controls and in compliance with applicable
+                  international data protection regulations, including GDPR
+                  where it applies.
                 </p>
               </article>
 
@@ -145,9 +170,11 @@ export default function PrivacyPolicyPage() {
                 </div>
                 <ul className="mt-5 grid gap-4">
                   {[
-                    "To facilitate international voice and data connections through our global infrastructure.",
+                    "To connect international calls, calculate credit usage, and show transparent destination rates.",
                     "To process payments and prevent fraudulent transactions on your account.",
                     "To provide technical support and respond to user inquiries effectively.",
+                    "To improve call quality, diagnose failed calls, and optimize international routes.",
+                    "To send service updates, security notices, receipts, and optional marketing messages.",
                   ].map((item) => (
                     <li
                       key={item}
@@ -176,13 +203,41 @@ export default function PrivacyPolicyPage() {
               </article>
 
               <article
+                id="security"
+                className="rounded-[14px] border border-white/8 bg-[#1d1d1d] px-6 py-6 sm:px-8 sm:py-7"
+              >
+                <div className="flex items-center gap-4">
+                  <span className="text-[2rem] font-semibold tracking-[-0.05em] text-[#f6c617]">
+                    04.
+                  </span>
+                  <h2 className="text-[1.05rem] font-semibold tracking-[-0.03em] text-white sm:text-[1.2rem]">
+                    Data Security Measures
+                  </h2>
+                </div>
+                <div className="mt-5 grid gap-4 md:grid-cols-3">
+                  {[
+                    "Encrypted app and website traffic using HTTPS/TLS.",
+                    "Restricted internal access to user records based on operational need.",
+                    "Payment processing through specialized providers so full card details are not stored by Natcall.",
+                  ].map((item) => (
+                    <p
+                      key={item}
+                      className="rounded-[10px] bg-[#262626] p-4 text-[13px] leading-7 text-[#c4c4c4]"
+                    >
+                      {item}
+                    </p>
+                  ))}
+                </div>
+              </article>
+
+              <article
                 id="partners"
                 className="rounded-[14px] border border-white/8 bg-[#1d1d1d]"
               >
                 <div className="px-6 py-6 sm:px-8 sm:py-7">
                   <div className="flex items-center gap-4">
                     <span className="text-[2rem] font-semibold tracking-[-0.05em] text-[#f6c617]">
-                      04.
+                    05.
                     </span>
                     <h2 className="text-[1.05rem] font-semibold tracking-[-0.03em] text-white sm:text-[1.2rem]">
                       Third-Party Partners
@@ -237,7 +292,7 @@ export default function PrivacyPolicyPage() {
               >
                 <div className="flex items-center gap-4">
                   <span className="text-[2rem] font-semibold tracking-[-0.05em] text-[#f6c617]">
-                    05.
+                    06.
                   </span>
                   <h2 className="text-[1.05rem] font-semibold tracking-[-0.03em] text-white sm:text-[1.2rem]">
                     Your Rights
@@ -260,17 +315,38 @@ export default function PrivacyPolicyPage() {
                 </div>
               </article>
 
+              <article
+                id="gdpr"
+                className="rounded-[14px] border border-white/8 bg-[#1d1d1d] px-6 py-6 sm:px-8 sm:py-7"
+              >
+                <div className="flex items-center gap-4">
+                  <span className="text-[2rem] font-semibold tracking-[-0.05em] text-[#f6c617]">
+                    07.
+                  </span>
+                  <h2 className="text-[1.05rem] font-semibold tracking-[-0.03em] text-white sm:text-[1.2rem]">
+                    GDPR Compliance
+                  </h2>
+                </div>
+                <p className="mt-4 text-[14px] leading-8 text-[#d3d3d3]">
+                  Where GDPR applies, Natcall processes personal data on lawful
+                  bases such as contract performance, legitimate interests,
+                  consent, and legal obligations. Users may request access,
+                  correction, deletion, portability, restriction, or objection
+                  by contacting our privacy team.
+                </p>
+              </article>
+
               <div
                 id="contact"
                 className="flex flex-col items-start justify-between gap-5 rounded-[14px] bg-[#f6c617] px-6 py-6 text-black sm:px-8 md:flex-row md:items-center"
               >
                 <div>
                   <h2 className="text-[1.05rem] font-semibold tracking-[-0.02em]">
-                    Questions or Concerns?
+                    Contact for privacy concerns
                   </h2>
                   <p className="mt-2 text-[15px] text-black/80">
-                    Our privacy team is available to assist you with any
-                    inquiries.
+                    Our privacy team is available to assist with privacy
+                    inquiries, data requests, and account information concerns.
                   </p>
                 </div>
                 <a

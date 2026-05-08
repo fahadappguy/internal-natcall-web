@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Inter_Tight } from "next/font/google";
+import { GoogleAnalytics } from "@/components/google-analytics";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { siteConfig } from "@/lib/site";
@@ -54,7 +55,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${interTight.variable}`}>
       <body>
-        <div className="min-h-screen pt-20">
+        <GoogleAnalytics />
+        <div className="min-h-screen pt-[73px]">
           <SiteHeader />
           {children}
           <SiteFooter />

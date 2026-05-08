@@ -1,11 +1,15 @@
 import Link from "next/link";
+import Image from "next/image";
+import { BlogSection } from "@/components/blog-section";
 import { CookieBanner } from "@/components/cookie-banner";
 import { HeroParallax } from "@/components/hero-parallax";
 import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
 import {
   createMetadata,
   features,
+  getAppStoreRating,
   howItWorks,
+  pricingRates,
   testimonials,
   trustMarks,
 } from "@/lib/site";
@@ -213,10 +217,52 @@ const featureIcons = {
   ),
 } as const;
 
-export default function HomePage() {
+const securityCards = [
+  {
+    title: "SSL Certificate",
+    status: "Active",
+    value: "TLS 1.3",
+    copy: "Website and app traffic are protected in transit with modern encrypted sessions.",
+    detail: "HTTPS enforced",
+  },
+  {
+    title: "Encrypted Traffic",
+    status: "Monitored",
+    value: "24/7",
+    copy: "Sensitive account, payment, and route data move through secured service layers.",
+    detail: "Secure API calls",
+  },
+  {
+    title: "Private Data",
+    status: "Controlled",
+    value: "Need-to-know",
+    copy: "Access to customer records is limited to support and operational requirements.",
+    detail: "Restricted access",
+  },
+];
+
+export default async function HomePage() {
+  const appStoreRating = await getAppStoreRating();
+
   return (
     <main className="pb-16">
-      <section className="mx-auto grid w-full max-w-[1200px] gap-12 px-4 pb-20 pt-10 sm:px-6 lg:grid-cols-[minmax(0,1fr)_520px] lg:items-center lg:px-8 lg:pt-20">
+      <section className="relative isolate overflow-hidden">
+        <video
+          className="absolute inset-0 -z-30 h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+        >
+          <source src="/videos/hero-smiling-phone-call.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 -z-20 bg-[#111111]/62" />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(17,17,17,0.95)_0%,rgba(17,17,17,0.78)_44%,rgba(17,17,17,0.46)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-[#111111] to-transparent" />
+
+        <div className="mx-auto grid min-h-[calc(100vh-73px)] w-full max-w-[1200px] gap-12 px-4 py-10 sm:px-6 lg:grid-cols-[minmax(0,1fr)_520px] lg:items-center lg:px-8 lg:py-16">
         <div className="max-w-[560px]">
           <Reveal>
             <span className="inline-flex items-center gap-2 rounded-[6px] border border-[#3c3418] bg-[#19150b] px-3 py-1 text-[13px] font-medium text-[#f6c617]">
@@ -239,12 +285,23 @@ export default function HomePage() {
           </Reveal>
 
           <Reveal delay={0.3}>
-            <div className="mt-6">
+            <div className="mt-6 flex flex-wrap gap-3">
               <span className="inline-flex items-center gap-2 rounded-full border border-[#2a2a2a] bg-[#1c1c1c] px-4 py-2 text-[13px] text-[#aaaaaa]">
                 <strong className="text-sm font-bold text-[#f6c617]">
                   $0.02
                 </strong>
                 <span>/ min</span>
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#2a2a2a] bg-[#1c1c1c] px-4 py-2 text-[13px] text-[#aaaaaa]">
+                <strong className="text-sm font-bold text-[#f6c617]">
+                  {appStoreRating.value}
+                </strong>
+                <span>
+                  App Store rating
+                  {appStoreRating.count
+                    ? ` (${appStoreRating.count.toLocaleString()} reviews)`
+                    : ""}
+                </span>
               </span>
             </div>
           </Reveal>
@@ -308,8 +365,11 @@ export default function HomePage() {
         </div>
 
         <Reveal direction="right" delay={0.2}>
-          <HeroParallax />
+          <div className="relative mx-auto flex min-h-[520px] w-full max-w-[560px] items-center justify-center px-6 py-8 [&>div]:mx-auto">
+            <HeroParallax />
+          </div>
         </Reveal>
+        </div>
       </section>
 
       <section className="border-y border-[#2a2a2a] bg-[#0d0d0d] py-8">
@@ -442,10 +502,121 @@ export default function HomePage() {
 
               <Link
                 href="/#download"
-                className="inline-flex w-full items-center justify-center rounded-full bg-[#f6c617] py-4 text-lg font-bold text-black transition hover:brightness-95"
+                className="inline-flex w-full items-center justify-center rounded-full bg-[#f6c617] py-3 text-lg font-bold text-black transition hover:brightness-95"
               >
                 Start Calling Now
               </Link>
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.18}>
+          <div className="relative mt-10 overflow-x-auto rounded-xl border border-[#2a2a2a] bg-[#111111]">
+            <table className="w-full min-w-[680px] border-collapse">
+              <thead>
+                <tr className="bg-[#242016]">
+                  <th className="px-5 py-4 text-left text-[12px] uppercase tracking-[0.12em] text-[#f6c617]">
+                    Country
+                  </th>
+                  <th className="px-5 py-4 text-left text-[12px] uppercase tracking-[0.12em] text-[#f6c617]">
+                    Natcall Rate
+                  </th>
+                  <th className="px-5 py-4 text-left text-[12px] uppercase tracking-[0.12em] text-[#f6c617]">
+                    Typical Carrier
+                  </th>
+                  <th className="px-5 py-4 text-left text-[12px] uppercase tracking-[0.12em] text-[#f6c617]">
+                    Savings
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {pricingRates.map((rate) => (
+                  <tr key={rate.country} className="border-t border-[#2a2a2a]">
+                    <td className="px-5 py-4 text-sm font-semibold text-white">
+                      {rate.country}
+                    </td>
+                    <td className="px-5 py-4 text-sm text-[#f6c617]">
+                      {rate.natcall}
+                    </td>
+                    <td className="px-5 py-4 text-sm text-[#bdbdbd]">
+                      {rate.carrier}
+                    </td>
+                    <td className="px-5 py-4 text-sm font-semibold text-white">
+                      Up to {rate.savings}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Reveal>
+      </section>
+
+      <section
+        id="security"
+        className="mx-auto w-full max-w-[1200px] px-4 pb-20 pt-4 sm:px-6 lg:px-8"
+      >
+        <Reveal>
+          <div className="grid gap-8 rounded-2xl border border-[#2a2a2a] bg-[#151515] p-6 md:grid-cols-[0.9fr_1.1fr] md:p-8">
+            <div>
+              <span className="inline-flex rounded-[6px] border border-[#3c3418] bg-[#19150b] px-3 py-1 text-[13px] font-medium text-[#f6c617]">
+                Security & Encryption
+              </span>
+              <h2 className="mt-4 text-[clamp(2rem,4vw,36px)] font-extrabold leading-[1.15] tracking-[-0.01em] text-white">
+                Built to protect every account, payment, and call route.
+              </h2>
+              <p className="mt-4 text-[15px] leading-7 text-[#bdbdbd]">
+                Natcall uses encrypted app traffic, secure payment processors,
+                route monitoring, and private account controls so families can
+                stay connected with confidence.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-3">
+              {securityCards.map((item) => (
+                  <article
+                    key={item.title}
+                    className="group relative flex min-h-[282px] flex-col overflow-hidden rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] p-5 transition duration-300 hover:-translate-y-1 hover:border-[#f6c617]/50 hover:bg-[#211f17]"
+                  >
+                    <div className="absolute inset-x-0 top-0 h-1 bg-[#f6c617]" />
+                    <div className="flex items-start justify-between gap-3">
+                      <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#f6c617]/30 bg-[#f6c617]/10 text-[#f6c617]">
+                      <svg
+                        aria-hidden="true"
+                        className="h-5 w-5"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M12 4.8c2.24 0 4.4.9 5.98 2.5v4.22c0 4.1-2.47 7.84-5.98 9.48-3.51-1.64-5.98-5.38-5.98-9.48V7.3A8.45 8.45 0 0 1 12 4.8Z"
+                          stroke="currentColor"
+                          strokeLinejoin="round"
+                          strokeWidth="1.7"
+                        />
+                      </svg>
+                    </span>
+                      <span className="rounded-full border border-[#3c3418] bg-[#19150b] px-2.5 py-1 text-[11px] font-semibold text-[#f6c617]">
+                        {item.status}
+                      </span>
+                    </div>
+                    <h3 className="mt-5 text-[16px] font-semibold text-white">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-[12px] uppercase tracking-[0.12em] text-[#f6c617]">
+                      {item.value}
+                    </p>
+                    <p className="mt-3 text-[13px] leading-7 text-[#c9c9c9]">
+                      {item.copy}
+                    </p>
+                    <div className="mt-auto flex items-center justify-between border-t border-white/10 pt-4 text-[12px] text-[#aaaaaa]">
+                      <span>{item.detail}</span>
+                      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#f6c617] text-black transition group-hover:scale-105">
+                        <svg aria-hidden="true" className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none">
+                          <path d="m7 12 3 3 7-7" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+                        </svg>
+                      </span>
+                    </div>
+                  </article>
+                ))}
             </div>
           </div>
         </Reveal>
@@ -522,8 +693,14 @@ export default function HomePage() {
                   {item.quote}
                 </p>
                 <div className="mt-6 flex items-center gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#2f2a17] text-[10px] font-semibold text-[#f6c617]">
-                    {item.initials}
+                  <span className="relative inline-flex h-12 w-12 overflow-hidden rounded-full border border-[#f6c617]/40 bg-[#2f2a17]">
+                    <Image
+                      src={item.photo}
+                      alt={`${item.name} testimonial photo`}
+                      fill
+                      className="scale-[0.86] rounded-full object-contain object-center"
+                      sizes="48px"
+                    />
                   </span>
                   <div>
                     <p className="text-[13px] font-semibold text-white">
@@ -537,6 +714,8 @@ export default function HomePage() {
           ))}
         </RevealGroup>
       </section>
+
+      <BlogSection />
 
       <section
         id="download"
@@ -552,7 +731,7 @@ export default function HomePage() {
           <Reveal delay={0.1}>
             <Link
               href="/#download"
-              className="inline-flex items-center justify-center rounded-full bg-[#f6c617] px-10 py-4 text-lg font-semibold text-black transition hover:brightness-95"
+              className="inline-flex items-center justify-center rounded-full bg-[#f6c617] px-10 py-2 text-lg font-semibold text-black transition hover:brightness-95"
             >
               Download for iOS
             </Link>
@@ -560,7 +739,7 @@ export default function HomePage() {
           <Reveal delay={0.15}>
             <Link
               href="/#download"
-              className="inline-flex items-center justify-center rounded-full border border-[#383838] bg-[#1c1c1c] px-10 py-4 text-lg font-semibold text-white transition hover:border-white/20"
+              className="inline-flex items-center justify-center rounded-full border border-[#383838] bg-[#1c1c1c] px-10 py-2 text-lg font-semibold text-white transition hover:border-white/20"
             >
               Get it on Android
             </Link>

@@ -25,9 +25,9 @@ export default function FaqPage() {
         </p>
         </section>
 
-        <section className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-          <aside className="space-y-4 lg:col-span-4">
-            <article className="sticky top-32 rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] p-6">
+        <section className="grid grid-cols-1 items-start gap-6 lg:grid-cols-12">
+          <aside className="space-y-4 lg:sticky lg:top-32 lg:col-span-4">
+            <article className="rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] p-6">
               <h2 className="mb-4 text-[20px] font-semibold leading-[1.5] text-white">
               Still have questions?
             </h2>
@@ -53,7 +53,7 @@ export default function FaqPage() {
               </a>
             </article>
 
-            <div className="relative overflow-hidden rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] aspect-square lg:h-64 lg:aspect-auto">
+            <div className="relative aspect-square overflow-hidden rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] lg:h-64 lg:aspect-auto">
               <Image
                 src="/images/faq-support-card.png"
                 alt="Global Presence support card"
@@ -62,12 +62,7 @@ export default function FaqPage() {
                 className="absolute inset-0 h-full w-full object-cover opacity-40"
                 preload
               />
-              <div className="relative z-10 flex h-full flex-col justify-end p-6">
-                <p className="text-[20px] font-bold text-white">Global Presence</p>
-                <p className="mt-1 max-w-[280px] text-[13px] leading-[1.4] text-[#aaaaaa]">
-                  Connected to 200+ countries with low-latency routes.
-                </p>
-              </div>
+              <div className="absolute inset-0 bg-black/5" />
             </div>
           </aside>
 

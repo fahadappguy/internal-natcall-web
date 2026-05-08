@@ -14,7 +14,7 @@ export default function TermsPage() {
           <h1 className="text-[clamp(3rem,6vw,56px)] font-extrabold leading-[1.1] tracking-[-0.02em] text-white">
             Terms of Service
           </h1>
-          <p className="mt-2 text-[16px] text-[#aaaaaa]">Last updated: April 2024</p>
+          <p className="mt-2 text-[16px] text-[#aaaaaa]">Last updated: May 2026</p>
         </section>
 
         <section className="grid gap-12 pb-8 text-[16px] leading-[1.6]">
@@ -37,7 +37,7 @@ export default function TermsPage() {
         ))}
 
         <article className="grid gap-5">
-          <h2 className="text-[20px] font-semibold leading-[1.5] text-white">7. Contact Information</h2>
+          <h2 className="text-[20px] font-semibold leading-[1.5] text-white">8. Contact Information</h2>
           <p className="text-[#aaaaaa]">
             If you have any questions about these Terms of Service, please contact our legal team
             at:

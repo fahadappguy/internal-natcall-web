@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { siteConfig } from "@/lib/site";
 
 type FooterLink = {
   label: string;
@@ -27,17 +28,17 @@ const footerVariants: Record<string, FooterVariant> = {
       {
         title: "Brand",
         links: [
-          { label: "About Us", href: "/" },
-          { label: "Careers", href: "/" },
-          { label: "Press", href: "/" },
+          { label: "About Us", href: "/about" },
+          { label: "Updates", href: "/#updates" },
+          { label: "Press", href: "/press" },
         ],
       },
       {
         title: "Product",
         links: [
           { label: "Rates", href: "/#pricing" },
-          { label: "Features", href: "/#product" },
-          { label: "Security", href: "/privacy-policy" },
+          { label: "Business Plans", href: "/business" },
+          { label: "Security", href: "/#security" },
         ],
       },
       {
@@ -56,17 +57,17 @@ const footerVariants: Record<string, FooterVariant> = {
       {
         title: "Brand",
         links: [
-          { label: "About Us", href: "/" },
-          { label: "Careers", href: "/" },
-          { label: "Press", href: "/" },
+          { label: "About Us", href: "/about" },
+          { label: "Updates", href: "/#updates" },
+          { label: "Press", href: "/press" },
         ],
       },
       {
         title: "Product",
         links: [
           { label: "Rates", href: "/#pricing" },
-          { label: "Coverage", href: "/" },
-          { label: "Enterprise", href: "/" },
+          { label: "Coverage", href: "/#pricing" },
+          { label: "Business Plans", href: "/business" },
         ],
       },
       {
@@ -85,9 +86,9 @@ const footerVariants: Record<string, FooterVariant> = {
       {
         title: "Brand",
         links: [
-          { label: "About Us", href: "/" },
-          { label: "Careers", href: "/" },
-          { label: "Press", href: "/" },
+          { label: "About Us", href: "/about" },
+          { label: "Updates", href: "/#updates" },
+          { label: "Press", href: "/press" },
         ],
       },
       {
@@ -103,7 +104,7 @@ const footerVariants: Record<string, FooterVariant> = {
         links: [
           { label: "Help Center", href: "/faq" },
           { label: "Contact", href: "/contact" },
-          { label: "Status", href: "/" },
+          { label: "Status", href: "/contact" },
         ],
       },
     ],
@@ -115,9 +116,9 @@ const footerVariants: Record<string, FooterVariant> = {
       {
         title: "BRAND",
         links: [
-          { label: "About Us", href: "/" },
-          { label: "Careers", href: "/" },
-          { label: "Press", href: "/" },
+          { label: "About Us", href: "/about" },
+          { label: "Updates", href: "/#updates" },
+          { label: "Press", href: "/press" },
         ],
       },
       {
@@ -133,7 +134,7 @@ const footerVariants: Record<string, FooterVariant> = {
         links: [
           { label: "Help Center", href: "/faq" },
           { label: "Contact Support", href: "/contact" },
-          { label: "System Status", href: "/" },
+          { label: "System Status", href: "/contact" },
         ],
       },
     ],
@@ -157,10 +158,50 @@ function getVariant(pathname: string) {
   return footerVariants.home;
 }
 
+const socialLinks = [
+  {
+    label: "Instagram",
+    href: siteConfig.social.instagram,
+    icon: (
+      <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="none">
+        <rect x="5" y="5" width="14" height="14" rx="4" stroke="currentColor" strokeWidth="1.8" />
+        <circle cx="12" cy="12" r="3.1" stroke="currentColor" strokeWidth="1.8" />
+        <path d="M16.2 8.1h.01" stroke="currentColor" strokeLinecap="round" strokeWidth="2.4" />
+      </svg>
+    ),
+  },
+  {
+    label: "Twitter",
+    href: siteConfig.social.twitter,
+    icon: (
+      <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M5.2 5.5 18.6 18.5M18.8 5.5 5.5 18.5"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeWidth="1.9"
+        />
+      </svg>
+    ),
+  },
+  {
+    label: "LinkedIn",
+    href: siteConfig.social.linkedin,
+    icon: (
+      <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="none">
+        <path d="M6.4 10.1v7.2M6.4 7.2v.02M10.4 17.3v-7.2M10.4 13.2c.5-1.9 1.6-3.2 3.5-3.2 2.3 0 3.7 1.5 3.7 4.3v3" stroke="currentColor" strokeLinecap="round" strokeWidth="1.8" />
+      </svg>
+    ),
+  },
+];
+
+const foundingYear = 2024;
+
 export function SiteFooter() {
   const pathname = usePathname();
   const variant = getVariant(pathname);
   const titleClassName = variant.titleClassName ?? "text-[1.05rem] text-white";
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="w-full border-t border-[#2a2a2a] bg-[#0d0d0d] pb-10 pt-20">
@@ -185,19 +226,57 @@ export function SiteFooter() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col items-center gap-4 border-t border-[#2a2a2a] pt-8 text-center sm:flex-row sm:justify-between sm:text-left">
-          <p className="text-[12px] text-[#aaaaaa]">Copyright 2024 Natcall. All rights reserved.</p>
+        <div className="mt-12 grid gap-6 rounded-xl border border-[#2a2a2a] bg-[#151515] p-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:p-6">
+          <div>
+            <h2 className="text-[1rem] font-semibold text-white">Join the Natcall newsletter</h2>
+            <p className="mt-2 max-w-xl text-[13px] leading-6 text-[#aaaaaa]">
+              Get rate updates, feature news, and calling tips for staying close to family.
+            </p>
+          </div>
+          <form className="flex w-full flex-col gap-3 sm:w-auto sm:min-w-[360px] sm:flex-row">
+            <label htmlFor="newsletter-email" className="sr-only">
+              Email address
+            </label>
+            <input
+              id="newsletter-email"
+              type="email"
+              name="email"
+              required
+              placeholder="Email address"
+              className="h-10 min-w-0 rounded-full border border-[#383838] bg-[#0f0f0f] px-4 text-sm text-white outline-none transition placeholder:text-[#777] focus:border-[#f6c617]"
+            />
+            <button
+              type="submit"
+              className="inline-flex h-10 items-center justify-center rounded-full bg-[#f6c617] px-6 text-sm font-bold text-black transition hover:brightness-95"
+            >
+              Sign Up
+            </button>
+          </form>
+        </div>
 
-          {variant.rightIcons ? (
-            <div className="flex items-center gap-3 text-[#7f7f7f]">
-              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-white/10">
-                <svg aria-hidden="true" className="h-3 w-3" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.6" />
-                  <path d="M12 4v16M4 12h16" stroke="currentColor" strokeLinecap="round" strokeWidth="1.6" />
-                </svg>
-              </span>
-              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-white/10">
-                <svg aria-hidden="true" className="h-3 w-3" viewBox="0 0 24 24" fill="none">
+        <div className="mt-12 flex flex-col items-center gap-4 border-t border-[#2a2a2a] pt-8 text-center sm:flex-row sm:justify-between sm:text-left">
+          <p className="text-[12px] text-[#aaaaaa]">
+            Copyright {foundingYear}-{currentYear} Natcall. All rights
+            reserved.
+          </p>
+
+          <div className="flex items-center gap-3 text-[#9d9d9d]">
+            {socialLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                aria-label={link.label}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 transition hover:border-[#f6c617]/60 hover:text-[#f6c617]"
+              >
+                {link.icon}
+              </a>
+            ))}
+
+            {variant.rightIcons ? (
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10">
+                <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="none">
                   <path
                     d="M12 4.8c2.24 0 4.4.9 5.98 2.5v4.22c0 4.1-2.47 7.84-5.98 9.48-3.51-1.64-5.98-5.38-5.98-9.48V7.3A8.45 8.45 0 0 1 12 4.8Z"
                     stroke="currentColor"
@@ -206,8 +285,8 @@ export function SiteFooter() {
                   />
                 </svg>
               </span>
+            ) : null}
             </div>
-          ) : null}
         </div>
       </div>
     </footer>

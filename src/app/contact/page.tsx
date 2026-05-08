@@ -98,7 +98,7 @@ export default function ContactPage() {
                 </p>
               </div>
               <span
-                className="hidden h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#f6c617] text-black sm:inline-flex lg:h-16 lg:w-16"
+                className="hidden h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#f6c617] text-black sm:inline-flex lg:h-10 lg:w-10"
                 aria-hidden="true"
               >
                 <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none">
@@ -164,7 +164,7 @@ export default function ContactPage() {
 
               <button
                 type="submit"
-                className="mt-2 inline-flex min-h-[54px] w-full items-center justify-center gap-4 rounded-xl bg-[#f6c617] px-6 text-[17px] font-extrabold text-black transition duration-200 hover:-translate-y-0.5 hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-[#f6c617]/40 focus:ring-offset-2 focus:ring-offset-[#101010]"
+                className="mt-2 inline-flex min-h-[44px] w-full items-center justify-center gap-4 rounded-xl bg-[#f6c617] px-6 text-[17px] font-extrabold text-black transition duration-200 hover:-translate-y-0.5 hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-[#f6c617]/40 focus:ring-offset-2 focus:ring-offset-[#101010]"
               >
                 Send Message
                 <svg
