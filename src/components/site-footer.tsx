@@ -202,14 +202,14 @@ export function SiteFooter() {
   return (
     <footer className="w-full border-t border-[#2a2a2a] bg-[#0d0d0d] pb-10 pt-14 sm:pt-20">
       <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
-        <div className="grid justify-items-center gap-9 text-center sm:grid-cols-2 md:gap-12 md:text-left md:justify-items-start xl:grid-cols-[1.25fr_repeat(3,minmax(0,1fr))]">
+        <div className="grid justify-items-center gap-9 text-center sm:grid-cols-2 md:gap-12 xl:grid-cols-[1.25fr_repeat(3,minmax(0,1fr))] xl:text-left xl:justify-items-start">
           <div className="max-w-[280px]">
             <h2 className="text-lg font-semibold tracking-[-0.03em] text-white">Natcall</h2>
             <p className="mt-4 text-[13px] leading-6 text-[#aaaaaa]">{variant.lead}</p>
           </div>
 
           {variant.columns.map((column) => (
-            <div key={column.title} className="w-full md:w-auto">
+            <div key={column.title} className="w-full xl:w-auto">
               <h2 className={`font-semibold ${titleClassName}`}>{column.title}</h2>
               <div className="mt-6 grid gap-3 text-[13px] text-[#aaaaaa]">
                 {column.links.map((link) => (
@@ -250,7 +250,7 @@ export function SiteFooter() {
           </form>
         </div>
 
-        <div className="mt-10 flex flex-col items-center gap-4 border-t border-[#2a2a2a] pt-8 text-center sm:mt-12 sm:flex-row sm:justify-between sm:text-left">
+        <div className="mt-10 flex flex-col items-center gap-4 border-t border-[#2a2a2a] pt-8 text-center sm:mt-12 lg:flex-row lg:justify-between lg:text-left">
           <p className="text-[12px] text-[#aaaaaa]">
             Copyright {foundingYear}-{currentYear} Natcall. All rights
             reserved.

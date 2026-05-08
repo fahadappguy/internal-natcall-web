@@ -261,8 +261,8 @@ export default async function HomePage() {
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(17,17,17,0.95)_0%,rgba(17,17,17,0.78)_44%,rgba(17,17,17,0.46)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-[#111111] to-transparent" />
 
-        <div className="mx-auto grid min-h-[calc(100vh-73px)] w-full max-w-[1200px] gap-8 px-4 py-9 sm:px-6 lg:grid-cols-[minmax(0,1fr)_520px] lg:items-center lg:gap-12 lg:px-8 lg:py-16">
-        <div className="flex max-w-[560px] flex-col items-center text-center lg:items-start lg:text-left">
+        <div className="mx-auto grid min-h-[calc(100vh-73px)] w-full max-w-[1200px] gap-8 px-4 py-9 sm:px-6 md:grid-cols-[minmax(0,1fr)_minmax(260px,360px)] md:items-center md:gap-7 md:py-12 lg:grid-cols-[minmax(0,1fr)_520px] lg:gap-12 lg:px-8 lg:py-16">
+        <div className="flex max-w-[560px] flex-col items-center text-center md:items-start md:text-left">
           <Reveal>
             <span className="self-start inline-flex items-center gap-2 rounded-[6px] border border-[#3c3418] bg-[#19150b] px-3 py-1 text-[13px] font-medium text-[#f6c617]">
               <span className="inline-block h-2.5 w-2.5 rounded-[2px] border border-current" />
@@ -284,7 +284,7 @@ export default async function HomePage() {
           </Reveal>
 
           <Reveal delay={0.3}>
-            <div className="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start">
+            <div className="mt-6 flex flex-wrap justify-center gap-3 md:justify-start">
               <span className="inline-flex max-w-full items-center gap-2 rounded-full border border-[#2a2a2a] bg-[#1c1c1c] px-4 py-2 text-[13px] text-[#aaaaaa]">
                 <strong className="text-sm font-bold text-[#f6c617]">
                   $0.02
@@ -305,7 +305,7 @@ export default async function HomePage() {
             </div>
           </Reveal>
 
-          <div className="mt-8 grid w-full gap-3 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-4 lg:justify-start">
+          <div className="mt-8 grid w-full gap-3 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-4 md:justify-start">
             <Reveal delay={0.35}>
               <Link
                 href="/#download"
@@ -364,7 +364,7 @@ export default async function HomePage() {
         </div>
 
         <Reveal direction="right" delay={0.2}>
-          <div className="relative mx-auto flex min-h-[390px] w-full max-w-[560px] items-center justify-center px-2 py-2 sm:min-h-[460px] sm:px-6 sm:py-8 lg:min-h-[520px] [&>div]:mx-auto">
+          <div className="relative mx-auto flex min-h-[390px] w-full max-w-[560px] items-center justify-center px-2 py-2 sm:min-h-[460px] sm:px-6 sm:py-8 md:min-h-[480px] lg:min-h-[520px] [&>div]:mx-auto">
             <HeroParallax />
           </div>
         </Reveal>
@@ -407,7 +407,7 @@ export default async function HomePage() {
         </div>
 
         <RevealGroup
-          className="mt-8 grid gap-5 md:mt-10 md:grid-cols-3 md:gap-8"
+          className="mt-8 grid gap-5 sm:grid-cols-2 md:mt-10 lg:grid-cols-3 lg:gap-8"
           delay={0.1}
           stagger={0.12}
         >
@@ -419,7 +419,7 @@ export default async function HomePage() {
               whileHover={{ y: -8, scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <article className="relative mx-auto w-[calc(100%-28px)] max-w-[315px] overflow-visible rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] p-5 text-center shadow-black/30 transition-all duration-300 hover:border-[#f6c617]/30 md:w-full md:max-w-none md:p-6 md:text-left">
+              <article className="relative mx-auto w-[calc(100%-28px)] max-w-[315px] overflow-visible rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] p-5 text-center shadow-black/30 transition-all duration-300 hover:border-[#f6c617]/30 sm:w-full sm:max-w-none md:p-6 md:text-left">
                 <span className="absolute -left-3 -top-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#f6c617] text-sm font-bold text-black md:-left-4 md:-top-4 md:h-10 md:w-10">
                   {index + 1}
                 </span>
@@ -556,7 +556,7 @@ export default async function HomePage() {
         className="mx-auto w-full max-w-[1200px] px-4 pb-14 pt-2 sm:px-6 sm:pb-20 sm:pt-4 lg:px-8"
       >
         <Reveal>
-          <div className="grid gap-8 rounded-2xl border border-[#2a2a2a] bg-[#151515] p-6 md:grid-cols-[0.9fr_1.1fr] md:p-8">
+          <div className="grid gap-8 rounded-2xl border border-[#2a2a2a] bg-[#151515] p-6 md:p-8 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
               <span className="inline-flex rounded-[6px] border border-[#3c3418] bg-[#19150b] px-3 py-1 text-[13px] font-medium text-[#f6c617]">
                 Security & Encryption
@@ -570,11 +570,11 @@ export default async function HomePage() {
                 stay connected with confidence.
               </p>
             </div>
-            <div className="grid gap-4 md:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
               {securityCards.map((item) => (
                   <article
                     key={item.title}
-                    className="group relative flex min-h-[230px] flex-col overflow-hidden rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] p-5 transition duration-300 hover:-translate-y-1 hover:border-[#f6c617]/50 hover:bg-[#211f17] md:min-h-[282px]"
+                    className="group relative flex min-h-[230px] flex-col overflow-hidden rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] p-5 transition duration-300 hover:-translate-y-1 hover:border-[#f6c617]/50 hover:bg-[#211f17] xl:min-h-[282px]"
                   >
                     <div className="absolute inset-x-0 top-0 h-1 bg-[#f6c617]" />
                     <div className="flex items-start justify-between gap-3">
@@ -634,7 +634,7 @@ export default async function HomePage() {
         </div>
 
         <RevealGroup
-          className="mt-10 grid gap-6 md:grid-cols-3"
+          className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
           delay={0.1}
           stagger={0.08}
         >
@@ -672,7 +672,7 @@ export default async function HomePage() {
         </div>
 
         <RevealGroup
-          className="grid gap-8 md:grid-cols-3"
+          className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
           delay={0.1}
           stagger={0.08}
         >

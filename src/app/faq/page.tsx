@@ -26,7 +26,7 @@ export default function FaqPage() {
         </section>
 
         <section className="grid grid-cols-1 items-start gap-6 lg:grid-cols-12">
-          <aside className="space-y-4 lg:sticky lg:top-32 lg:col-span-4">
+          <aside className="grid gap-4 md:grid-cols-2 lg:sticky lg:top-32 lg:col-span-4 lg:block lg:space-y-4">
             <article className="rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] p-5 sm:p-6">
               <h2 className="mb-4 text-[20px] font-semibold leading-[1.5] text-white">
               Still have questions?
@@ -53,7 +53,7 @@ export default function FaqPage() {
               </a>
             </article>
 
-            <div className="relative mx-auto aspect-square w-full max-w-[360px] overflow-hidden rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] lg:h-64 lg:max-w-none lg:aspect-auto">
+            <div className="relative mx-auto aspect-square w-full max-w-[360px] overflow-hidden rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] md:h-full md:min-h-[240px] md:max-w-none md:aspect-auto lg:h-64 lg:aspect-auto">
               <Image
                 src="/images/faq-support-card.png"
                 alt="Global Presence support card"
