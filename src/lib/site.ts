@@ -194,39 +194,6 @@ export const testimonials = [
   },
 ];
 
-export const pricingRates = [
-  {
-    country: "Nigeria",
-    natcall: "$0.07/min",
-    carrier: "$0.89/min",
-    savings: "92%",
-  },
-  {
-    country: "Ghana",
-    natcall: "$0.08/min",
-    carrier: "$0.75/min",
-    savings: "89%",
-  },
-  {
-    country: "India",
-    natcall: "$0.03/min",
-    carrier: "$0.35/min",
-    savings: "91%",
-  },
-  {
-    country: "Ethiopia",
-    natcall: "$0.12/min",
-    carrier: "$1.05/min",
-    savings: "89%",
-  },
-  {
-    country: "Philippines",
-    natcall: "$0.05/min",
-    carrier: "$0.49/min",
-    savings: "90%",
-  },
-];
-
 export const faqItems = [
   {
     question: "How does Natcall work?",

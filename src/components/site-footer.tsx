@@ -222,34 +222,6 @@ export function SiteFooter() {
           ))}
         </div>
 
-        <div className="mt-10 grid gap-6 rounded-xl border border-[#2a2a2a] bg-[#151515] p-5 text-center sm:mt-12 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:p-6 lg:text-left">
-          <div>
-            <h2 className="text-[1rem] font-semibold text-white">Join the Natcall newsletter</h2>
-            <p className="mx-auto mt-2 max-w-xl text-[13px] leading-6 text-[#aaaaaa] lg:mx-0">
-              Get rate updates, feature news, and calling tips for staying close to family.
-            </p>
-          </div>
-          <form className="flex w-full flex-col gap-3 sm:flex-row lg:w-auto lg:min-w-[360px]">
-            <label htmlFor="newsletter-email" className="sr-only">
-              Email address
-            </label>
-            <input
-              id="newsletter-email"
-              type="email"
-              name="email"
-              required
-              placeholder="Email address"
-              className="h-10 min-w-0 rounded-full border border-[#383838] bg-[#0f0f0f] px-4 text-sm text-white outline-none transition placeholder:text-[#777] focus:border-[#f6c617]"
-            />
-            <button
-              type="submit"
-              className="inline-flex h-10 items-center justify-center rounded-full bg-[#f6c617] px-6 text-sm font-bold text-black transition hover:brightness-95"
-            >
-              Sign Up
-            </button>
-          </form>
-        </div>
-
         <div className="mt-10 flex flex-col items-center gap-4 border-t border-[#2a2a2a] pt-8 text-center sm:mt-12 lg:flex-row lg:justify-between lg:text-left">
           <p className="text-[12px] text-[#aaaaaa]">
             Copyright {foundingYear}-{currentYear} Natcall. All rights

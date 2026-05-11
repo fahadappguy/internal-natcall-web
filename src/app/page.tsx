@@ -8,7 +8,6 @@ import {
   features,
   getAppStoreRating,
   howItWorks,
-  pricingRates,
   testimonials,
   trustMarks,
 } from "@/lib/site";
@@ -509,46 +508,6 @@ export default async function HomePage() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.18}>
-          <div className="relative mt-10 overflow-x-auto rounded-xl border border-[#2a2a2a] bg-[#111111]">
-            <table className="w-full min-w-[680px] border-collapse">
-              <thead>
-                <tr className="bg-[#242016]">
-                  <th className="px-5 py-4 text-left text-[12px] uppercase tracking-[0.12em] text-[#f6c617]">
-                    Country
-                  </th>
-                  <th className="px-5 py-4 text-left text-[12px] uppercase tracking-[0.12em] text-[#f6c617]">
-                    Natcall Rate
-                  </th>
-                  <th className="px-5 py-4 text-left text-[12px] uppercase tracking-[0.12em] text-[#f6c617]">
-                    Typical Carrier
-                  </th>
-                  <th className="px-5 py-4 text-left text-[12px] uppercase tracking-[0.12em] text-[#f6c617]">
-                    Savings
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {pricingRates.map((rate) => (
-                  <tr key={rate.country} className="border-t border-[#2a2a2a]">
-                    <td className="px-5 py-4 text-sm font-semibold text-white">
-                      {rate.country}
-                    </td>
-                    <td className="px-5 py-4 text-sm text-[#f6c617]">
-                      {rate.natcall}
-                    </td>
-                    <td className="px-5 py-4 text-sm text-[#bdbdbd]">
-                      {rate.carrier}
-                    </td>
-                    <td className="px-5 py-4 text-sm font-semibold text-white">
-                      Up to {rate.savings}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Reveal>
       </section>
 
       <section

@@ -1,3 +1,4 @@
+import { ContactForm } from "@/components/contact-form";
 import { Reveal } from "@/components/reveal";
 import { createMetadata } from "@/lib/site";
 
@@ -11,7 +12,7 @@ export const metadata = createMetadata({
 export default function ContactPage() {
   return (
     <main className="px-4 pb-8 pt-0 sm:px-6 lg:px-8">
-      <section className="mx-auto grid w-full max-w-[1320px] overflow-hidden rounded-b-[24px] bg-[#101010] shadow-[0_28px_90px_rgba(0,0,0,0.18)] lg:min-h-[calc(100vh-5rem)] lg:grid-cols-[0.98fr_1.02fr]">
+      <section className="mx-auto grid w-full max-w-[1320px] overflow-hidden rounded-b-[24px] bg-[#101010] shadow-[0_28px_90px_rgba(0,0,0,0.18)] lg:min-h-[calc(100vh-5rem)] lg:grid-cols-[minmax(0,0.98fr)_minmax(0,1.02fr)]">
         <div className="flex flex-col justify-center px-5 py-8 sm:px-8 lg:px-10 lg:py-8 xl:px-12">
           <Reveal>
             <span className="inline-flex w-fit items-center gap-2 rounded-full border border-[#5b4a08] bg-[#1b1708] px-4 py-1.5 text-[13px] font-semibold text-[#f6c617]">
@@ -58,7 +59,7 @@ export default function ContactPage() {
                     Direct support
                   </p>
                   <p className="mt-1 break-all text-[15px] font-bold text-white sm:text-[17px]">
-                    support@natcall.app
+                    sadiomer02@gmail.com
                   </p>
                 </div>
               </div>
@@ -113,81 +114,7 @@ export default function ContactPage() {
               </span>
             </div>
 
-            <form
-              action="mailto:natcallapp@gmail.com"
-              method="post"
-              encType="text/plain"
-              className="grid gap-4"
-            >
-              <div className="grid gap-4 sm:grid-cols-2">
-                <label className="grid gap-2">
-                  <span className="text-[13px] font-extrabold uppercase tracking-[0.08em] text-[#9b9b9b]">
-                    Name
-                  </span>
-                  <input
-                    name="name"
-                    type="text"
-                    autoComplete="name"
-                    required
-                    placeholder="Your name"
-                    className="min-h-[52px] rounded-xl border border-white/10 bg-[#171717] px-4 text-[16px] font-semibold text-white outline-none transition placeholder:text-[#696969] hover:border-white/20 focus:border-[#f6c617] focus:bg-[#1d1d1d] focus:ring-2 focus:ring-[#f6c617]/15"
-                  />
-                </label>
-
-                <label className="grid gap-2">
-                  <span className="text-[13px] font-extrabold uppercase tracking-[0.08em] text-[#9b9b9b]">
-                    Email
-                  </span>
-                  <input
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    required
-                    placeholder="you@example.com"
-                    className="min-h-[52px] rounded-xl border border-white/10 bg-[#171717] px-4 text-[16px] font-semibold text-white outline-none transition placeholder:text-[#696969] hover:border-white/20 focus:border-[#f6c617] focus:bg-[#1d1d1d] focus:ring-2 focus:ring-[#f6c617]/15"
-                  />
-                </label>
-              </div>
-
-              <label className="grid gap-2">
-                <span className="text-[13px] font-extrabold uppercase tracking-[0.08em] text-[#9b9b9b]">
-                  Message
-                </span>
-                <textarea
-                  name="message"
-                  required
-                  rows={5}
-                  placeholder="How can we help?"
-                  className="min-h-[132px] resize-y rounded-xl border border-white/10 bg-[#171717] px-4 py-3 text-[16px] font-semibold leading-7 text-white outline-none transition placeholder:text-[#696969] hover:border-white/20 focus:border-[#f6c617] focus:bg-[#1d1d1d] focus:ring-2 focus:ring-[#f6c617]/15"
-                />
-              </label>
-
-              <button
-                type="submit"
-                className="mt-2 inline-flex min-h-[44px] w-full items-center justify-center gap-4 rounded-xl bg-[#f6c617] px-6 text-[17px] font-extrabold text-black transition duration-200 hover:-translate-y-0.5 hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-[#f6c617]/40 focus:ring-offset-2 focus:ring-offset-[#101010]"
-              >
-                Send Message
-                <svg
-                  aria-hidden="true"
-                  className="h-4 w-4"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    d="M5 12h13m0 0-4.5-4.5M18 12l-4.5 4.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.8"
-                  />
-                </svg>
-              </button>
-
-              <p className="flex items-center justify-center gap-3 text-center text-[13px] font-semibold leading-5 text-[#777777] sm:text-[14px]">
-                <span className="h-2.5 w-2.5 rounded-full bg-[#47e384]" />
-                Team is online - typically replies within 2 hours
-              </p>
-            </form>
+            <ContactForm />
             </div>
           </div>
         </Reveal>
