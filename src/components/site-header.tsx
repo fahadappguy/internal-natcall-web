@@ -128,7 +128,7 @@ export function SiteHeader() {
                           onClick={() => setAboutOpen(false)}
                           className="group rounded-xl border border-white/10 bg-[#151515]/92 px-4 py-3 shadow-[0_18px_50px_rgba(0,0,0,0.34)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-[#f6c617]/50 hover:bg-[#1c1c1c]"
                         >
-                          <span className="block text-[14px] font-medium text-white transition group-hover:text-[#f6c617]">
+                          <span className="block text-[14px] font-medium text-white transition group-hover:text-white">
                             {link.label}
                           </span>
                           <span className="mt-1 block text-[12px] leading-5 text-[#8f8f8f]">
@@ -213,7 +213,7 @@ export function SiteHeader() {
                           onClick={() => setExploreOpen(false)}
                           className="group rounded-xl border border-white/10 bg-[#151515]/92 px-4 py-3 shadow-[0_18px_50px_rgba(0,0,0,0.34)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-[#f6c617]/50 hover:bg-[#1c1c1c]"
                         >
-                          <span className="block text-[14px] font-medium text-white transition group-hover:text-[#f6c617]">
+                          <span className="block text-[14px] font-medium text-white transition group-hover:text-white">
                             {link.label}
                           </span>
                           <span className="mt-1 block text-[12px] leading-5 text-[#8f8f8f]">
@@ -347,7 +347,7 @@ export function SiteHeader() {
                               key={link.label}
                               href={link.href}
                               onClick={() => setMenuOpen(false)}
-                              className="rounded-[10px] border border-white/8 bg-[#1c1c1c] px-3 py-2 text-sm text-[#d0d0d0] transition hover:border-[#f6c617]/45 hover:text-[#f6c617]"
+                              className="rounded-[10px] border border-white/8 bg-[#1c1c1c] px-3 py-2 text-sm text-[#d0d0d0] transition hover:border-[#f6c617]/45 hover:text-white"
                             >
                               {link.label}
                             </Link>
@@ -405,7 +405,7 @@ export function SiteHeader() {
                               key={link.label}
                               href={link.href}
                               onClick={() => setMenuOpen(false)}
-                              className="rounded-[10px] border border-white/8 bg-[#1c1c1c] px-3 py-2 text-sm text-[#d0d0d0] transition hover:border-[#f6c617]/45 hover:text-[#f6c617]"
+                              className="rounded-[10px] border border-white/8 bg-[#1c1c1c] px-3 py-2 text-sm text-[#d0d0d0] transition hover:border-[#f6c617]/45 hover:text-white"
                             >
                               {link.label}
                             </Link>
