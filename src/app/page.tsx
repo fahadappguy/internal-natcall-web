@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { CookieBanner } from "@/components/cookie-banner";
 import { HeroParallax } from "@/components/hero-parallax";
 import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
@@ -8,7 +7,6 @@ import {
   features,
   getAppStoreRating,
   howItWorks,
-  testimonials,
   trustMarks,
 } from "@/lib/site";
 
@@ -615,58 +613,6 @@ export default async function HomePage() {
                 <p className="mt-2 text-[14px] leading-6 text-[#bdbdbd]">
                   {feature.copy}
                 </p>
-              </article>
-            </RevealItem>
-          ))}
-        </RevealGroup>
-      </section>
-
-      <section className="mx-auto w-full max-w-[1200px] px-4 pb-14 pt-14 sm:px-6 sm:pb-20 sm:pt-20 lg:px-8">
-        <div className="text-center">
-          <Reveal>
-            <h2 className="text-[clamp(2.25rem,4vw,36px)] font-extrabold leading-[1.2] tracking-[-0.01em] text-white mb-10">
-              Testimonials
-            </h2>
-          </Reveal>
-        </div>
-
-        <RevealGroup
-          className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
-          delay={0.1}
-          stagger={0.08}
-        >
-          {testimonials.map((item) => (
-            <RevealItem
-              key={item.name}
-              direction="up"
-              duration={0.55}
-              whileHover={{ y: -6, scale: 1.01 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <article className="rounded-xl border border-[#2a2a2a] border-l-4 border-l-[#f6c617] bg-[#1c1c1c] p-6 transition-shadow duration-300 hover:shadow-[0_24px_80px_rgba(0,0,0,0.18)]">
-                <p className="text-[14px] uppercase tracking-[0.28em] text-[#f6c617]">
-                  *****
-                </p>
-                <p className="mt-4 text-[14px] leading-6 text-white">
-                  {item.quote}
-                </p>
-                <div className="mt-6 flex items-center gap-3">
-                  <span className="relative inline-flex h-12 w-12 overflow-hidden rounded-full border border-[#f6c617]/40 bg-[#2f2a17]">
-                    <Image
-                      src={item.photo}
-                      alt={`${item.name} testimonial photo`}
-                      fill
-                      className="scale-[0.86] rounded-full object-contain object-center"
-                      sizes="48px"
-                    />
-                  </span>
-                  <div>
-                    <p className="text-[13px] font-semibold text-white">
-                      {item.name}
-                    </p>
-                    <p className="text-[11px] text-[#9d9d9d]">{item.meta}</p>
-                  </div>
-                </div>
               </article>
             </RevealItem>
           ))}
