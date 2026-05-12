@@ -27,7 +27,7 @@ export default function FaqPage() {
 
         <section className="grid grid-cols-1 items-start gap-6 lg:grid-cols-12">
           <aside className="grid gap-4 md:grid-cols-2 lg:sticky lg:top-32 lg:col-span-4 lg:block lg:space-y-4">
-            <article className="rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] p-5 sm:p-6">
+            <article className="rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] p-5 text-center sm:p-6 lg:text-left">
               <h2 className="mb-4 text-[20px] font-semibold leading-[1.5] text-white">
               Still have questions?
             </h2>
@@ -36,7 +36,7 @@ export default function FaqPage() {
             </p>
               <a
                 href="mailto:natcallapp@gmail.com?subject=Natcall%20Support"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#383838] bg-[#242424] py-3 text-base font-bold text-white transition hover:bg-[#2a2a2a]"
+                className="btn-premium-secondary inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#383838] bg-[#242424] py-3 text-base font-bold text-white"
               >
                 <span className="inline-flex h-6 w-6 items-center justify-center text-[#f5c518]">
                   <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24" fill="none">

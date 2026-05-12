@@ -1,3 +1,4 @@
+import { PrivacyNav } from "@/components/privacy-nav";
 import { Reveal } from "@/components/reveal";
 import {
   LegalContentBlock,
@@ -72,6 +73,10 @@ export default async function PrivacyPolicyPage() {
   const document = await getLegalDocument("privacy");
   const contentBlocks = getLegalContentBlocks(document.content);
   const sections = contentBlocks.filter((block) => block.type === "section");
+  const navSections = sections.map((block, index) => ({
+    id: sectionId(block.heading),
+    label: `${index + 1}. ${block.heading}`,
+  }));
 
   return (
     <main className="mx-auto w-full max-w-[1180px] px-4 pb-20 pt-10 sm:px-6 lg:px-12">
@@ -96,21 +101,7 @@ export default async function PrivacyPolicyPage() {
 
       <section className="grid items-start gap-6 lg:grid-cols-[280px_minmax(0,1fr)]">
         <aside className="hidden lg:sticky lg:top-28 lg:block">
-          <nav className="grid gap-1 text-[14px] text-[#cfcfcf]" aria-label="Privacy sections">
-            {sections.map((block, index) => (
-              <a
-                key={block.heading}
-                href={`#${sectionId(block.heading)}`}
-                className={`border-l-2 px-3 py-3 transition hover:border-[#f6c617] hover:bg-[#1c1607] hover:text-white ${
-                  index === 0
-                    ? "border-[#f6c617] bg-[#1c1607] text-white"
-                    : "border-transparent"
-                }`}
-              >
-                {index + 1}. {block.heading}
-              </a>
-            ))}
-          </nav>
+          <PrivacyNav sections={navSections} />
         </aside>
 
         <Reveal delay={0.2}>

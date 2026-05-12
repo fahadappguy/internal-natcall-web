@@ -84,9 +84,9 @@ export function SiteHeader() {
                 type="button"
                 aria-expanded={aboutOpen}
                 onClick={() => setAboutOpen((value) => !value)}
-                className={`inline-flex items-center gap-1.5 text-[14px] font-medium transition ${
+                className={`nav-link-premium items-center gap-1.5 text-[14px] transition ${
                   aboutActive || aboutOpen
-                    ? "text-[#f6c617]"
+                    ? "is-active text-[#f6c617]"
                     : "text-[#aaaaaa] hover:text-white"
                 }`}
               >
@@ -118,17 +118,17 @@ export function SiteHeader() {
                         ? { duration: 0 }
                         : { duration: 0.18, ease: [0.22, 1, 0.36, 1] }
                     }
-                    className="absolute left-0 top-8 w-[360px] overflow-hidden rounded-2xl border border-[#2a2a2a] bg-[#111111]/95 p-4 shadow-[0_24px_90px_rgba(0,0,0,0.48)] backdrop-blur-xl xl:w-[380px]"
+                    className="absolute left-0 top-9 w-[360px] p-1 xl:w-[380px]"
                   >
-                    <div className="grid grid-cols-2 gap-1.5">
+                    <div className="grid grid-cols-2 gap-3">
                       {aboutLinks.map((link) => (
                         <Link
                           key={link.label}
                           href={link.href}
                           onClick={() => setAboutOpen(false)}
-                          className="group rounded-xl px-3 py-2.5 transition hover:bg-[#1c1c1c]"
+                          className="group rounded-xl border border-white/10 bg-[#151515]/92 px-4 py-3 shadow-[0_18px_50px_rgba(0,0,0,0.34)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-[#f6c617]/50 hover:bg-[#1c1c1c]"
                         >
-                          <span className="block text-[14px] font-semibold text-white transition group-hover:text-[#f6c617]">
+                          <span className="block text-[14px] font-medium text-white transition group-hover:text-[#f6c617]">
                             {link.label}
                           </span>
                           <span className="mt-1 block text-[12px] leading-5 text-[#8f8f8f]">
@@ -149,10 +149,10 @@ export function SiteHeader() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className={`text-[14px] transition ${
+                  className={`nav-link-premium text-[14px] transition ${
                     active
-                      ? "font-medium text-[#f6c617]"
-                      : "font-medium text-[#aaaaaa] hover:text-white"
+                      ? "is-active text-[#f6c617]"
+                      : "text-[#aaaaaa] hover:text-white"
                   }`}
                 >
                   {link.label}
@@ -169,9 +169,9 @@ export function SiteHeader() {
                 type="button"
                 aria-expanded={exploreOpen}
                 onClick={() => setExploreOpen((value) => !value)}
-                className={`inline-flex items-center gap-1.5 text-[14px] font-medium transition ${
+                className={`nav-link-premium items-center gap-1.5 text-[14px] transition ${
                   exploreActive || exploreOpen
-                    ? "text-[#f6c617]"
+                    ? "is-active text-[#f6c617]"
                     : "text-[#aaaaaa] hover:text-white"
                 }`}
               >
@@ -203,17 +203,17 @@ export function SiteHeader() {
                         ? { duration: 0 }
                         : { duration: 0.18, ease: [0.22, 1, 0.36, 1] }
                     }
-                    className="absolute right-0 top-8 w-[260px] overflow-hidden rounded-2xl border border-[#2a2a2a] bg-[#111111]/95 p-4 shadow-[0_24px_90px_rgba(0,0,0,0.48)] backdrop-blur-xl"
+                    className="absolute right-0 top-9 w-[280px] p-1"
                   >
-                    <div className="grid gap-1.5">
+                    <div className="grid gap-3">
                       {exploreLinks.map((link) => (
                         <Link
                           key={link.label}
                           href={link.href}
                           onClick={() => setExploreOpen(false)}
-                          className="group rounded-xl px-3 py-2.5 transition hover:bg-[#1c1c1c]"
+                          className="group rounded-xl border border-white/10 bg-[#151515]/92 px-4 py-3 shadow-[0_18px_50px_rgba(0,0,0,0.34)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-[#f6c617]/50 hover:bg-[#1c1c1c]"
                         >
-                          <span className="block text-[14px] font-semibold text-white transition group-hover:text-[#f6c617]">
+                          <span className="block text-[14px] font-medium text-white transition group-hover:text-[#f6c617]">
                             {link.label}
                           </span>
                           <span className="mt-1 block text-[12px] leading-5 text-[#8f8f8f]">
@@ -231,7 +231,7 @@ export function SiteHeader() {
           <div className="hidden lg:block">
             <Link
               href="/#download"
-              className="inline-flex items-center justify-center rounded-full bg-[#f6c617] px-6 py-2 text-[16px] font-bold text-black transition hover:brightness-95"
+              className="btn-premium-primary inline-flex items-center justify-center rounded-full bg-[#f6c617] px-6 py-2 text-[16px] font-bold text-black"
             >
               Download App
             </Link>
@@ -291,7 +291,7 @@ export function SiteHeader() {
                       onClick={() => setMenuOpen(false)}
                       className={`rounded-[12px] px-4 py-3 text-sm transition ${
                         active
-                          ? "bg-[#211a08] font-semibold text-[#f6c617]"
+                          ? "bg-[#211a08] font-medium text-[#f6c617]"
                           : "bg-[#1c1c1c] text-[#d0d0d0] hover:text-white"
                       }`}
                     >
@@ -307,7 +307,7 @@ export function SiteHeader() {
                     onClick={() => setMobileAboutOpen((value) => !value)}
                     className={`flex w-full items-center justify-between rounded-[12px] px-4 py-3 text-left text-sm transition ${
                       aboutActive || mobileAboutOpen
-                        ? "bg-[#211a08] font-semibold text-[#f6c617]"
+                        ? "bg-[#211a08] font-medium text-[#f6c617]"
                         : "bg-[#1c1c1c] text-[#d0d0d0] hover:text-white"
                     }`}
                   >
@@ -347,7 +347,7 @@ export function SiteHeader() {
                               key={link.label}
                               href={link.href}
                               onClick={() => setMenuOpen(false)}
-                              className="rounded-[10px] px-3 py-2 text-sm text-[#d0d0d0] transition hover:bg-[#1c1c1c] hover:text-[#f6c617]"
+                              className="rounded-[10px] border border-white/8 bg-[#1c1c1c] px-3 py-2 text-sm text-[#d0d0d0] transition hover:border-[#f6c617]/45 hover:text-[#f6c617]"
                             >
                               {link.label}
                             </Link>
@@ -365,7 +365,7 @@ export function SiteHeader() {
                     onClick={() => setMobileExploreOpen((value) => !value)}
                     className={`flex w-full items-center justify-between rounded-[12px] px-4 py-3 text-left text-sm transition ${
                       exploreActive || mobileExploreOpen
-                        ? "bg-[#211a08] font-semibold text-[#f6c617]"
+                        ? "bg-[#211a08] font-medium text-[#f6c617]"
                         : "bg-[#1c1c1c] text-[#d0d0d0] hover:text-white"
                     }`}
                   >
@@ -405,7 +405,7 @@ export function SiteHeader() {
                               key={link.label}
                               href={link.href}
                               onClick={() => setMenuOpen(false)}
-                              className="rounded-[10px] px-3 py-2 text-sm text-[#d0d0d0] transition hover:bg-[#1c1c1c] hover:text-[#f6c617]"
+                              className="rounded-[10px] border border-white/8 bg-[#1c1c1c] px-3 py-2 text-sm text-[#d0d0d0] transition hover:border-[#f6c617]/45 hover:text-[#f6c617]"
                             >
                               {link.label}
                             </Link>
@@ -419,7 +419,7 @@ export function SiteHeader() {
                 <Link
                   href="/#download"
                   onClick={() => setMenuOpen(false)}
-                  className="mt-2 inline-flex items-center justify-center rounded-full bg-[#f6c617] px-6 py-2.5 text-sm font-semibold text-black"
+                  className="btn-premium-primary mt-2 inline-flex items-center justify-center rounded-full bg-[#f6c617] px-6 py-2.5 text-sm font-semibold text-black"
                 >
                   Download App
                 </Link>

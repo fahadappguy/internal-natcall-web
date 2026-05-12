@@ -13,7 +13,7 @@ export default function ContactPage() {
   return (
     <main className="px-4 pb-8 pt-0 sm:px-6 lg:px-8">
       <section className="mx-auto grid w-full max-w-[1320px] overflow-hidden rounded-b-[24px] bg-[#101010] shadow-[0_28px_90px_rgba(0,0,0,0.18)] lg:min-h-[calc(100vh-5rem)] lg:grid-cols-[minmax(0,0.98fr)_minmax(0,1.02fr)]">
-        <div className="flex flex-col justify-center px-5 py-8 sm:px-8 lg:px-10 lg:py-8 xl:px-12">
+        <div className="flex flex-col items-center justify-center px-5 py-8 text-center sm:px-8 lg:items-start lg:px-10 lg:py-8 lg:text-left xl:px-12">
           <Reveal>
             <span className="inline-flex w-fit items-center gap-2 rounded-full border border-[#5b4a08] bg-[#1b1708] px-4 py-1.5 text-[13px] font-semibold text-[#f6c617]">
               <span className="inline-block h-2 w-2 rounded-full bg-[#f6c617]" />
@@ -36,8 +36,8 @@ export default function ContactPage() {
           </Reveal>
 
           <Reveal delay={0.3}>
-            <div className="mt-8 max-w-[520px] rounded-[18px] border border-white/8 bg-white/[0.035] p-5 shadow-[0_24px_80px_rgba(0,0,0,0.2)] backdrop-blur">
-              <div className="flex items-start gap-4">
+            <div className="shimmer-border mt-8 w-full max-w-[520px] rounded-[18px] border border-white/8 bg-white/[0.035] p-5 shadow-[0_24px_80px_rgba(0,0,0,0.2)] backdrop-blur">
+              <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-start">
                 <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-[14px] bg-[#f6c617] text-black shadow-[0_18px_36px_rgba(246,198,23,0.18)]">
                   <svg
                     aria-hidden="true"
@@ -54,7 +54,7 @@ export default function ContactPage() {
                     />
                   </svg>
                 </span>
-                <div>
+                <div className="text-center sm:text-left">
                   <p className="text-[13px] font-semibold uppercase tracking-[0.08em] text-[#8f8f8f]">
                     Direct support
                   </p>
@@ -88,7 +88,7 @@ export default function ContactPage() {
 
         <Reveal direction="right" delay={0.15}>
           <div className="flex h-full flex-col justify-center px-5 py-8 sm:px-8 lg:px-10 lg:py-8 xl:px-12">
-            <div className="rounded-[22px] border border-white/8 bg-white/[0.025] p-5 shadow-[0_28px_90px_rgba(0,0,0,0.24)] sm:p-6 lg:p-7">
+            <div className="shimmer-border rounded-[22px] border border-white/8 bg-white/[0.025] p-5 shadow-[0_28px_90px_rgba(0,0,0,0.24)] sm:p-6 lg:p-7">
             <div className="mb-6 flex items-start justify-between gap-5">
               <div>
                 <h2 className="text-[clamp(1.8rem,2.5vw,32px)] font-extrabold leading-[1.1] tracking-normal text-white">

@@ -73,8 +73,132 @@
   }
 }
 
+@layer components {
+  .btn-premium-primary {
+    transform: translateZ(0);
+    transition:
+      transform 180ms ease,
+      filter 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .btn-premium-primary:hover {
+    transform: scale(1.04);
+    filter: brightness(1.05);
+    box-shadow: 0 14px 34px rgba(246, 198, 23, 0.22);
+  }
+
+  .btn-premium-primary:active {
+    transform: scale(0.99);
+  }
+
+  .btn-premium-secondary {
+    transform: translateZ(0);
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      color 180ms ease,
+      box-shadow 180ms ease,
+      background-color 180ms ease;
+  }
+
+  .btn-premium-secondary:hover {
+    transform: scale(1.08);
+    border-color: rgba(246, 198, 23, 0.78);
+    color: #f6c617;
+    box-shadow: 0 16px 42px rgba(246, 198, 23, 0.18);
+  }
+
+  .btn-premium-secondary:active {
+    transform: scale(0.99);
+  }
+
+  .nav-link-premium {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding-bottom: 0.35rem;
+    font-weight: 400;
+  }
+
+  .nav-link-premium::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    content: "";
+    background: #f6c617;
+    border-radius: 999px;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 180ms ease;
+  }
+
+  .nav-link-premium:hover::after,
+  .nav-link-premium.is-active::after {
+    transform: scaleX(1);
+  }
+
+  .shimmer-border {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .shimmer-border::before {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    padding: 1px;
+    pointer-events: none;
+    content: "";
+    background: linear-gradient(
+      115deg,
+      rgba(246, 198, 23, 0.08) 0%,
+      rgba(246, 198, 23, 0.18) 34%,
+      rgba(255, 236, 147, 0.92) 48%,
+      rgba(246, 198, 23, 0.2) 62%,
+      rgba(246, 198, 23, 0.08) 100%
+    );
+    background-size: 240% 100%;
+    border-radius: inherit;
+    animation: border-shimmer 2.5s linear infinite;
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+}
+
+@keyframes border-shimmer {
+  from {
+    background-position: 180% 0;
+  }
+
+  to {
+    background-position: -80% 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .btn-premium-primary,
+  .btn-premium-secondary,
+  .nav-link-premium,
+  .shimmer-border::before {
+    animation: none;
+    transition-duration: 0ms;
+  }
+
+  .btn-premium-primary:hover,
+  .btn-premium-secondary:hover,
+  .btn-premium-primary:active,
+  .btn-premium-secondary:active {
+    transform: none;
   }
 }

@@ -50,8 +50,8 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="grid gap-6 py-12 sm:py-16 md:grid-cols-2">
-          <article className="rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] p-6">
+        <section className="grid gap-6 py-12 text-center sm:py-16 md:grid-cols-2 lg:text-left">
+          <article className="shimmer-border rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] p-6">
             <h2 className="text-2xl font-bold text-white">Mission</h2>
             <p className="mt-4 text-[16px] leading-8 text-[#c8c8c8]">
               To empower diaspora communities to stay connected with family
@@ -59,11 +59,11 @@ export default function AboutPage() {
               clear, affordable calling home.
             </p>
           </article>
-          <article className="rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] p-6">
+          <article className="shimmer-border rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] p-6">
             <h2 className="text-2xl font-bold text-white">Trust & Security</h2>
             <div className="mt-5 grid gap-3 text-sm text-[#d6d6d6]">
               {["SSL certificate", "Encrypted app traffic", "Private account data"].map((item) => (
-                <span key={item} className="inline-flex items-center gap-3 rounded-[8px] bg-[#262626] px-4 py-3">
+                <span key={item} className="inline-flex items-center justify-center gap-3 rounded-[8px] bg-[#262626] px-4 py-3 lg:justify-start">
                   <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#f6c617]/10 text-[#f6c617]">
                     <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="none">
                       <path d="M12 4.8c2.24 0 4.4.9 5.98 2.5v4.22c0 4.1-2.47 7.84-5.98 9.48-3.51-1.64-5.98-5.38-5.98-9.48V7.3A8.45 8.45 0 0 1 12 4.8Z" stroke="currentColor" strokeLinejoin="round" strokeWidth="1.7" />
@@ -78,18 +78,18 @@ export default function AboutPage() {
 
         <section className="grid gap-4 border-y border-[#2a2a2a] py-10 sm:grid-cols-2 sm:py-12 lg:grid-cols-4">
           {aboutStats.map((stat) => (
-            <article key={stat.label} className="rounded-xl bg-[#151515] p-5 text-center sm:text-left">
+            <article key={stat.label} className="rounded-xl bg-[#151515] p-5 text-center lg:text-left">
               <p className="text-3xl font-extrabold text-[#f6c617]">{stat.value}</p>
               <p className="mt-2 text-sm text-[#aaaaaa]">{stat.label}</p>
             </article>
           ))}
         </section>
 
-        <section className="py-12 sm:py-16">
+        <section className="py-12 text-center sm:py-16 lg:text-left">
           <h2 className="text-3xl font-bold text-white">The Team</h2>
           <div className="mt-8 grid gap-5 md:grid-cols-2">
             {team.map((member) => (
-              <article key={member.name} className="rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] p-6">
+              <article key={member.name} className="shimmer-border rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] p-6">
                 <p className="text-xl font-semibold text-white">{member.name}</p>
                 <p className="mt-1 text-sm font-semibold text-[#f6c617]">{member.role}</p>
                 <p className="mt-4 text-[15px] leading-7 text-[#bdbdbd]">{member.bio}</p>
@@ -98,7 +98,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section>
+        <section className="text-center lg:text-left">
           <h2 className="text-3xl font-bold text-white">Our Values</h2>
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((value) => (

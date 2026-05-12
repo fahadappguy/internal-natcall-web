@@ -1,25 +1,41 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { privacySections } from "@/lib/site";
 
-export function PrivacyNav() {
-  const [activeSection, setActiveSection] = useState("introduction");
+type PrivacyNavSection = {
+  id: string;
+  label: string;
+};
+
+type PrivacyNavProps = {
+  sections: PrivacyNavSection[];
+};
+
+export function PrivacyNav({ sections }: PrivacyNavProps) {
+  const [activeSection, setActiveSection] = useState(sections[0]?.id ?? "");
 
   useEffect(() => {
+    if (sections.length === 0) {
+      return;
+    }
+
     let ticking = false;
 
     const updateActiveSection = () => {
-      const sectionElements = privacySections
+      const sectionElements = sections
         .map((section) => document.getElementById(section.id))
         .filter((section): section is HTMLElement => Boolean(section));
+
+      if (sectionElements.length === 0) {
+        return;
+      }
 
       const scrollPosition = window.scrollY + 120;
       const pageBottom =
         window.innerHeight + window.scrollY >= document.body.scrollHeight - 2;
 
       if (pageBottom) {
-        setActiveSection(privacySections[privacySections.length - 1].id);
+        setActiveSection(sections[sections.length - 1].id);
         return;
       }
 
@@ -30,7 +46,7 @@ export function PrivacyNav() {
         sectionElements[0],
       );
 
-      setActiveSection(currentSection?.id ?? "introduction");
+      setActiveSection(currentSection?.id ?? sections[0].id);
     };
 
     const requestUpdate = () => {
@@ -55,11 +71,11 @@ export function PrivacyNav() {
       window.removeEventListener("resize", requestUpdate);
       window.removeEventListener("hashchange", requestUpdate);
     };
-  }, []);
+  }, [sections]);
 
   return (
-    <nav className="grid gap-1" aria-label="Privacy sections">
-      {privacySections.map((section) => {
+    <nav className="grid gap-1 text-[14px] text-[#cfcfcf]" aria-label="Privacy sections">
+      {sections.map((section) => {
         const isActive = activeSection === section.id;
 
         return (
@@ -67,10 +83,10 @@ export function PrivacyNav() {
             key={section.id}
             href={`#${section.id}`}
             onClick={() => setActiveSection(section.id)}
-            className={`flex items-center gap-3 border-l-4 px-4 py-3 text-[14px] transition ${
+            className={`border-l-2 px-3 py-3 transition ${
               isActive
-                ? "border-l-[#f6c617] bg-[#211a08] text-[#f6c617]"
-                : "border-l-transparent text-[#d4d4d4] hover:border-l-[#444444] hover:text-white"
+                ? "border-[#f6c617] bg-[#1c1607] text-white"
+                : "border-transparent hover:border-[#f6c617] hover:bg-[#1c1607] hover:text-white"
             }`}
           >
             {section.label}

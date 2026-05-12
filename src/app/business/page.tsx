@@ -114,7 +114,7 @@ export default function BusinessPage() {
                 {plan.description}
               </p>
 
-              <ul className="mt-4 grid gap-2.5 text-[12px] leading-5 text-[#e5e5e5]">
+              <ul className="my-5 grid gap-2.5 text-[12px] leading-5 text-[#e5e5e5]">
                 {plan.features.map((feature) => (
                   <li key={feature} className="flex gap-3">
                     <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#f6c617]/12 text-[#f6c617]">
@@ -127,7 +127,7 @@ export default function BusinessPage() {
 
               <Link
                 href="/contact"
-                className="mt-auto inline-flex h-10 items-center justify-center rounded-full border border-[#383838] px-5 text-[13px] font-bold text-white transition hover:border-[#f6c617]/70 hover:text-[#f6c617]"
+                className="btn-premium-secondary mt-auto inline-flex h-10 items-center justify-center rounded-full border border-[#383838] px-5 text-[13px] font-bold text-white"
               >
                 {plan.cta}
               </Link>

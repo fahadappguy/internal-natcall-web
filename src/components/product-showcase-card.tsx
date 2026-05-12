@@ -27,7 +27,7 @@ export function ProductShowcaseCard({
   return (
     <LazyMotion features={domAnimation}>
       <m.article
-        className="group grid h-full gap-4 overflow-hidden rounded-[24px] border border-white/8 bg-brand-surface/95 p-4 sm:p-5"
+        className="shimmer-border group grid h-full gap-4 overflow-hidden rounded-[24px] border border-white/8 bg-brand-surface/95 p-4 sm:p-5"
         initial={reducedMotion ? false : { opacity: 0, y: 26 }}
         transition={{
           duration: reducedMotion ? 0 : 0.7,

@@ -15,10 +15,10 @@ export default function NotFound() {
           home for less.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <Link href="/" className="inline-flex rounded-full bg-[#f6c617] px-8 py-3 font-bold text-black">
+          <Link href="/" className="btn-premium-primary inline-flex rounded-full bg-[#f6c617] px-8 py-3 font-bold text-black">
             Back Home
           </Link>
-          <Link href="/contact" className="inline-flex rounded-full border border-[#383838] bg-[#1c1c1c] px-8 py-3 font-bold text-white">
+          <Link href="/contact" className="btn-premium-secondary inline-flex rounded-full border border-[#383838] bg-[#1c1c1c] px-8 py-3 font-bold text-white">
             Contact Support
           </Link>
         </div>

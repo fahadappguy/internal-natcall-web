@@ -45,7 +45,7 @@ export default function PressPage() {
       <div className="mx-auto max-w-[1180px]">
         <section className="overflow-hidden rounded-2xl border border-[#2a2a2a] bg-[#0d0d0d] sm:rounded-3xl">
           <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_360px]">
-            <div className="p-6 sm:p-8 lg:p-10">
+            <div className="p-6 text-center sm:p-8 lg:p-10 lg:text-left">
               <span className="inline-flex rounded-[6px] border border-[#3c3418] bg-[#19150b] px-3 py-1 text-[13px] font-medium text-[#f6c617]">
                 Press & Media Kit
               </span>
@@ -58,16 +58,16 @@ export default function PressPage() {
                 quality, and a simpler way to call home.
               </p>
 
-              <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap">
+              <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap sm:justify-center lg:justify-start">
                 <a
                   href="mailto:natcallapp@gmail.com?subject=Natcall%20Media%20Inquiry"
-                  className="inline-flex w-full items-center justify-center rounded-full bg-[#f6c617] px-7 py-3 text-sm font-bold text-black transition hover:brightness-95 sm:w-auto sm:py-2"
+                  className="btn-premium-primary inline-flex w-full items-center justify-center rounded-full bg-[#f6c617] px-7 py-3 text-sm font-bold text-black sm:w-auto sm:py-2"
                 >
                   Contact Media Team
                 </a>
                 <Link
                   href="/about"
-                  className="inline-flex w-full items-center justify-center rounded-full border border-[#383838] px-7 py-3 text-sm font-semibold text-white transition hover:border-[#f6c617]/60 hover:text-[#f6c617] sm:w-auto sm:py-2"
+                  className="btn-premium-secondary inline-flex w-full items-center justify-center rounded-full border border-[#383838] px-7 py-3 text-sm font-semibold text-white sm:w-auto sm:py-2"
                 >
                   Read Our Story
                 </Link>
@@ -97,7 +97,7 @@ export default function PressPage() {
           </div>
         </section>
 
-        <section className="mt-8 grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
+        <section className="mt-8 grid gap-5 text-center lg:grid-cols-[0.9fr_1.1fr] lg:text-left">
           <article className="rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] p-6">
             <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[#f6c617]">
               Boilerplate
@@ -133,7 +133,7 @@ export default function PressPage() {
           </article>
         </section>
 
-        <section className="mt-8 grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+        <section className="mt-8 grid gap-5 text-center lg:grid-cols-[1.1fr_0.9fr] lg:text-left">
           <article className="rounded-xl border border-[#2a2a2a] bg-[#151515] p-6">
             <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[#f6c617]">
               Available on request
@@ -153,7 +153,7 @@ export default function PressPage() {
             </div>
           </article>
 
-          <article className="rounded-xl border border-[#3c3418] bg-[#19150b] p-6">
+          <article className="shimmer-border rounded-xl border border-[#3c3418] bg-[#19150b] p-6">
             <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[#f6c617]">
               Press contact
             </p>
@@ -166,7 +166,7 @@ export default function PressPage() {
             </p>
             <a
               href="mailto:natcallapp@gmail.com?subject=Natcall%20Press%20Request"
-              className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[#f6c617] px-4 py-3 text-sm font-bold text-black transition hover:brightness-95"
+              className="btn-premium-primary mt-6 inline-flex w-full items-center justify-center rounded-full bg-[#f6c617] px-4 py-3 text-sm font-bold text-black"
             >
               natcallapp@gmail.com
             </a>

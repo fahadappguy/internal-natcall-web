@@ -56,7 +56,7 @@ export function CookieBanner() {
         <button
           type="button"
           onClick={() => saveCookieConsent(createAcceptedAllConsent())}
-          className="inline-flex items-center justify-center rounded-full bg-[#f6c617] px-6 py-2 text-[12px] font-bold text-black transition hover:brightness-95"
+          className="btn-premium-primary inline-flex items-center justify-center rounded-full bg-[#f6c617] px-6 py-2 text-[12px] font-bold text-black"
         >
           Accept All
         </button>

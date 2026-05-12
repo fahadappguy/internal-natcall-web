@@ -184,7 +184,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="mt-2 inline-flex min-h-[44px] w-full items-center justify-center gap-4 rounded-xl bg-[#f6c617] px-6 text-[17px] font-extrabold text-black transition duration-200 hover:-translate-y-0.5 hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-[#f6c617]/40 focus:ring-offset-2 focus:ring-offset-[#101010] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
+        className="btn-premium-primary mt-2 inline-flex min-h-[44px] w-full items-center justify-center gap-4 rounded-xl bg-[#f6c617] px-6 text-[17px] font-extrabold text-black focus:outline-none focus:ring-2 focus:ring-[#f6c617]/40 focus:ring-offset-2 focus:ring-offset-[#101010] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100"
       >
         {status === "submitting" ? "Sending..." : "Send Message"}
         <svg
