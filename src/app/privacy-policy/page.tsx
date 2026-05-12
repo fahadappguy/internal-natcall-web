@@ -156,7 +156,7 @@ export default async function PrivacyPolicyPage() {
               </div>
               <a
                 href="mailto:privacy@natcall.io?subject=Natcall%20Privacy%20Request"
-                className="inline-flex h-12 shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-[#111] px-7 text-sm font-semibold text-white transition hover:bg-black"
+                className="btn-premium-secondary inline-flex h-12 shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-black/20 bg-[#111] px-7 text-sm font-semibold text-white"
               >
                 Email Privacy Team
               </a>

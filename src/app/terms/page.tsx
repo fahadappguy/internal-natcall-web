@@ -124,7 +124,7 @@ export default async function TermsPage() {
             </div>
             <a
               href="mailto:legal@natcall.io?subject=Natcall%20Terms%20PDF%20Request"
-              className="inline-flex items-center justify-center rounded-full border border-[#383838] bg-[#242424] px-6 py-2 text-[14px] font-bold text-white transition hover:bg-[#333333]"
+              className="btn-premium-secondary inline-flex items-center justify-center rounded-full border border-[#383838] bg-[#242424] px-6 py-2 text-[14px] font-bold text-white"
             >
               Download PDF
             </a>

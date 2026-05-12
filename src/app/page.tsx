@@ -306,11 +306,11 @@ export default async function HomePage() {
             <Reveal delay={0.35}>
               <Link
                 href="/#download"
-                className="btn-premium-secondary inline-flex w-100 items-center justify-center gap-2 rounded-full border border-[#383838] bg-[#1c1c1c] px-8 py-3 text-sm font-medium text-white sm:w-auto"
+                className="btn-premium-secondary inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#383838] bg-[#1c1c1c] px-8 py-3 text-sm font-medium text-white sm:w-auto"
               >
                 <svg
                   aria-hidden="true"
-                  className="h-4 w-4"
+                  className="h-6 w-6"
                   viewBox="0 0 18 18"
                   fill="none"
                 >
@@ -331,11 +331,11 @@ export default async function HomePage() {
               <Link
                 href="/#download"
                 aria-label="Open Android download"
-                className="btn-premium-secondary inline-flex w-100 items-center justify-center gap-2 rounded-full border border-[#383838] bg-[#1c1c1c] px-8 py-3 text-sm font-medium text-white sm:w-auto"
+                className="btn-premium-secondary inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#383838] bg-[#1c1c1c] px-8 py-3 text-sm font-medium text-white sm:w-auto"
               >
                 <svg
                   aria-hidden="true"
-                  className="h-4 w-4"
+                  className="h-6 w-6"
                   viewBox="0 0 18 18"
                   fill="none"
                 >
