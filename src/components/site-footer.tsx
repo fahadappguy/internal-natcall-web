@@ -36,7 +36,6 @@ const footerVariants: Record<string, FooterVariant> = {
         title: "Product",
         links: [
           { label: "Rates", href: "/#pricing" },
-          { label: "Business Plans", href: "/business" },
           { label: "Security", href: "/#security" },
         ],
       },
@@ -65,7 +64,6 @@ const footerVariants: Record<string, FooterVariant> = {
         links: [
           { label: "Rates", href: "/#pricing" },
           { label: "Coverage", href: "/#pricing" },
-          { label: "Business Plans", href: "/business" },
         ],
       },
       {

@@ -9,13 +9,6 @@ const previewCount = 4;
 
 const placeholderPosts = [
   {
-    title: "Business Calling Tips for Global Teams",
-    date: "Coming soon",
-    excerpt:
-      "Practical guidance for teams managing frequent international calls across departments and regions.",
-    image: "/images/mockups/contacts-desktop.png",
-  },
-  {
     title: "How to Plan Monthly Calling Credits",
     date: "Coming soon",
     excerpt:

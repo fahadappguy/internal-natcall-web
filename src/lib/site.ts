@@ -449,13 +449,6 @@ export const blogPosts = [
     image: "/images/mockups/contacts-mobile.png",
   },
   {
-    title: "New Business Calling Plans Are Coming",
-    date: "March 10, 2026",
-    excerpt:
-      "A preview of shared credits, usage reporting, and team calling features for growing companies.",
-    image: "/images/mockups/account-desktop.png",
-  },
-  {
     title: "How Natcall Protects Customer Data",
     date: "February 18, 2026",
     excerpt:

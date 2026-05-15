@@ -20,7 +20,6 @@ const aboutLinks = [
   { href: "/about", label: "About Us", copy: "Our story, mission, and values" },
   { href: "/press", label: "Press", copy: "Media kit and brand information" },
   { href: "/#security", label: "Security", copy: "Encryption and trust measures" },
-  { href: "/business", label: "Business Plans", copy: "Calling plans for teams" },
 ];
 
 const exploreLinks = [
@@ -118,9 +117,9 @@ export function SiteHeader() {
                         ? { duration: 0 }
                         : { duration: 0.18, ease: [0.22, 1, 0.36, 1] }
                     }
-                    className="absolute left-0 top-9 w-[360px] p-1 xl:w-[380px]"
+                    className="absolute left-0 top-9 w-[280px] p-1"
                   >
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid gap-3">
                       {aboutLinks.map((link) => (
                         <Link
                           key={link.label}
