@@ -29,7 +29,7 @@ export default function AboutPage() {
             <div className="max-w-[760px]">
               <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-2 text-[13px] font-medium text-[#f6c617] backdrop-blur-md">
                 <span className="h-2 w-2 rounded-full bg-[#f6c617]" />
-                About Natcall
+                Company Story
               </span>
 
               <h1 className="mt-5 max-w-[760px] text-[clamp(2.25rem,6vw,62px)] font-extrabold leading-[1.04] tracking-[-0.02em] text-white sm:leading-[0.98] sm:tracking-[-0.035em]">
