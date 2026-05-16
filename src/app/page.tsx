@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { CookieBanner } from "@/components/cookie-banner";
 import { HeroParallax } from "@/components/hero-parallax";
 import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
@@ -7,6 +8,8 @@ import {
   features,
   getAppStoreRating,
   howItWorks,
+  pricingRates,
+  testimonials,
   trustMarks,
 } from "@/lib/site";
 
@@ -506,6 +509,46 @@ export default async function HomePage() {
           </div>
         </Reveal>
 
+        <Reveal delay={0.18}>
+          <div className="relative mt-10 overflow-x-auto rounded-xl border border-[#2a2a2a] bg-[#111111]">
+            <table className="w-full min-w-[680px] border-collapse">
+              <thead>
+                <tr className="bg-[#242016]">
+                  <th className="px-5 py-4 text-left text-[12px] uppercase tracking-[0.12em] text-[#f6c617]">
+                    Country
+                  </th>
+                  <th className="px-5 py-4 text-left text-[12px] uppercase tracking-[0.12em] text-[#f6c617]">
+                    Natcall Rate
+                  </th>
+                  <th className="px-5 py-4 text-left text-[12px] uppercase tracking-[0.12em] text-[#f6c617]">
+                    Typical Carrier
+                  </th>
+                  <th className="px-5 py-4 text-left text-[12px] uppercase tracking-[0.12em] text-[#f6c617]">
+                    Savings
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {pricingRates.map((rate) => (
+                  <tr key={rate.country} className="border-t border-[#2a2a2a]">
+                    <td className="px-5 py-4 text-sm font-semibold text-white">
+                      {rate.country}
+                    </td>
+                    <td className="px-5 py-4 text-sm text-[#f6c617]">
+                      {rate.natcall}
+                    </td>
+                    <td className="px-5 py-4 text-sm text-[#bdbdbd]">
+                      {rate.carrier}
+                    </td>
+                    <td className="px-5 py-4 text-sm font-semibold text-white">
+                      Up to {rate.savings}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Reveal>
       </section>
 
       <section
@@ -612,6 +655,61 @@ export default async function HomePage() {
                 </h3>
                 <p className="mt-2 text-[14px] leading-6 text-[#bdbdbd]">
                   {feature.copy}
+                </p>
+              </article>
+            </RevealItem>
+          ))}
+        </RevealGroup>
+      </section>
+
+      <section
+        id="testimonials"
+        className="mx-auto w-full max-w-[1200px] px-4 pb-14 pt-4 sm:px-6 sm:pb-20 sm:pt-8 lg:px-8"
+      >
+        <div className="text-center">
+          <Reveal>
+            <h2 className="text-[clamp(2.25rem,4vw,36px)] font-extrabold leading-[1.2] tracking-[-0.01em] text-white">
+              Testimonials
+            </h2>
+          </Reveal>
+        </div>
+
+        <RevealGroup
+          className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+          delay={0.1}
+          stagger={0.08}
+        >
+          {testimonials.map((testimonial) => (
+            <RevealItem
+              key={testimonial.name}
+              direction="up"
+              duration={0.55}
+              whileHover={{ y: -6, scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
+            >
+              <article className="flex h-full min-h-[260px] flex-col rounded-xl border border-[#2a2a2a] bg-[#1c1c1c] p-5 transition-all duration-300 hover:border-[#f6c617]/30 hover:bg-[#211f17]">
+                <div className="flex items-center gap-3">
+                  <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border border-[#f6c617]/25 bg-[#111111]">
+                    <Image
+                      src={testimonial.photo}
+                      alt=""
+                      fill
+                      className="object-cover"
+                      sizes="48px"
+                    />
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="text-[15px] font-semibold text-white">
+                      {testimonial.name}
+                    </h3>
+                    <p className="mt-1 text-[12px] leading-5 text-[#f6c617]">
+                      {testimonial.meta}
+                    </p>
+                  </div>
+                </div>
+
+                <p className="mt-5 text-[14px] leading-7 text-[#d0d0d0]">
+                  {testimonial.quote}
                 </p>
               </article>
             </RevealItem>
