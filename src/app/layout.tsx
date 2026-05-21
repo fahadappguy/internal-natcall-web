@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Inter_Tight } from "next/font/google";
+import { AppShell } from "@/components/app-shell";
 import { GoogleAnalytics } from "@/components/google-analytics";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
@@ -21,7 +20,7 @@ const interTight = Inter_Tight({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Natcall | International Calling",
+    default: "NatCall | Call Home Spend Less",
     template: "%s | Natcall",
   },
   description: siteConfig.description,
@@ -29,13 +28,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "Natcall",
-    title: "Natcall | International Calling",
+    title: "Natcall | Call Home Spend Less",
     description: siteConfig.description,
     url: siteConfig.url,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Natcall | International Calling",
+    title: "Natcall | Call Home Spend Less",
     description: siteConfig.description,
   },
 };
@@ -56,11 +55,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${interTight.variable}`}>
       <body>
         <GoogleAnalytics />
-        <div className="min-h-screen pt-[73px]">
-          <SiteHeader />
-          {children}
-          <SiteFooter />
-        </div>
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );
