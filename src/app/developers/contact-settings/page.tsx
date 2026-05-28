@@ -32,6 +32,24 @@ const defaultDestinations = [
 ];
 
 const destinationStorageKey = "natcall_destinations";
+type Destination = (typeof defaultDestinations)[number];
+
+function normalizeDestination(item: unknown, index: number): Destination {
+  const record =
+    item && typeof item === "object"
+      ? (item as Partial<Record<keyof Destination, unknown>>)
+      : {};
+
+  return {
+    id: typeof record.id === "string" ? record.id : `dest-${Date.now()}-${index}`,
+    country: typeof record.country === "string" ? record.country : "Unknown",
+    flag: typeof record.flag === "string" ? record.flag : "ðŸŒ",
+    description:
+      typeof record.description === "string"
+        ? record.description
+        : "Great international calling routes.",
+  };
+}
 
 export default function ContactSettingsPage() {
   const [contact, setContact] = useState(defaultContact);
@@ -39,31 +57,30 @@ export default function ContactSettingsPage() {
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem("natcall_contact");
-      if (raw) setContact((prev) => ({ ...prev, ...JSON.parse(raw) }));
-    } catch (e) {
-      // ignore
-    }
-
-    try {
-      const rawDest = localStorage.getItem(destinationStorageKey);
-      if (rawDest) {
-        const parsed = JSON.parse(rawDest);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          setDestinations(
-            parsed.map((item: any) => ({
-              id: typeof item?.id === "string" ? item.id : String(Date.now()),
-              country: typeof item?.country === "string" ? item.country : "Unknown",
-              flag: typeof item?.flag === "string" ? item.flag : "🌍",
-              description: typeof item?.description === "string" ? item.description : "Great international calling routes.",
-            }))
-          );
-        }
+    const timeout = window.setTimeout(() => {
+      try {
+        const raw = localStorage.getItem("natcall_contact");
+        if (raw) setContact((prev) => ({ ...prev, ...JSON.parse(raw) }));
+      } catch {
+        // ignore
       }
-    } catch (e) {
-      // ignore
-    }
+
+      try {
+        const rawDest = localStorage.getItem(destinationStorageKey);
+        if (rawDest) {
+          const parsed: unknown = JSON.parse(rawDest);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            setDestinations(
+              parsed.map((item, index) => normalizeDestination(item, index))
+            );
+          }
+        }
+      } catch {
+        // ignore
+      }
+    }, 0);
+
+    return () => window.clearTimeout(timeout);
   }, []);
 
   function handleChange(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -105,7 +122,7 @@ export default function ContactSettingsPage() {
       localStorage.setItem(destinationStorageKey, JSON.stringify(destinations));
       setSaved(true);
       setTimeout(() => setSaved(false), 2500);
-    } catch (e) {
+    } catch {
       // ignore
     }
   }
