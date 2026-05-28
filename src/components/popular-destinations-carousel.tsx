@@ -88,8 +88,16 @@ export function PopularDestinationsCarousel() {
         <div className="grid gap-8 lg:grid-cols-[1.5fr_0.95fr] lg:items-center">
           <div className="space-y-5">
             <div className="flex flex-wrap items-center gap-4">
-              <div className="animate-destination-float inline-flex h-24 w-24 items-center justify-center rounded-3xl bg-gradient-to-br from-[#111111] via-[#1f1f1f] to-[#272727] text-5xl shadow-[0_0_0_1px_rgba(246,198,23,0.12)]">
-                {activeDestination.flag}
+              <div className="animate-destination-float inline-flex h-24 w-24 items-center justify-center overflow-hidden rounded-3xl bg-gradient-to-br from-[#111111] via-[#1f1f1f] to-[#272727] text-5xl shadow-[0_0_0_1px_rgba(246,198,23,0.12)]">
+                {activeDestination.flagUrl ? (
+                  <img
+                    src={activeDestination.flagUrl}
+                    alt=""
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  activeDestination.flag
+                )}
               </div>
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.28em] text-[#f6c617]">
@@ -143,8 +151,16 @@ export function PopularDestinationsCarousel() {
                   }`}
                 >
                   <div className="flex items-center gap-4">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0f0f0f] text-3xl">
-                      {destination.flag}
+                    <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl bg-[#0f0f0f] text-3xl">
+                      {destination.flagUrl ? (
+                        <img
+                          src={destination.flagUrl}
+                          alt=""
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        destination.flag
+                      )}
                     </div>
                     <div>
                       <h4 className="text-lg font-semibold text-white">

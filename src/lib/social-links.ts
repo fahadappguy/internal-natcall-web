@@ -40,6 +40,18 @@ export const fallbackSocialLinks: SocialLink[] = [
     platform: "linkedin",
     url: siteConfig.social.linkedin,
   },
+  {
+    platform: "facebook",
+    url: siteConfig.social.facebook,
+  },
+  {
+    platform: "tiktok",
+    url: siteConfig.social.tiktok,
+  },
+  {
+    platform: "youtube",
+    url: siteConfig.social.youtube,
+  },
 ];
 
 function normalizeSocialLinks(data: unknown): SocialLink[] {

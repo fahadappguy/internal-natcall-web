@@ -416,7 +416,11 @@ export default async function HomePage() {
         </Reveal>
 
         <Reveal delay={0.18}>
-          <div className="relative mt-10 overflow-x-auto rounded-xl border border-[#2a2a2a] bg-[#111111]">
+          <div
+            className={`relative mt-10 overflow-x-auto rounded-xl border border-[#2a2a2a] bg-[#111111] ${
+              pricingRates.length > 6 ? "max-h-[430px] overflow-y-auto" : ""
+            }`}
+          >
             <table className="w-full min-w-[680px] border-collapse">
               <thead>
                 <tr className="bg-[#242016]">

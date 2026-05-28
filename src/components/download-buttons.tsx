@@ -89,7 +89,7 @@ function StoreButton({
 
 export function DownloadButtons({ downloadLinks, variant }: DownloadButtonsProps) {
   return (
-    <>
+    <div className="grid w-full gap-3 sm:flex sm:w-auto sm:flex-wrap sm:items-center sm:justify-center sm:gap-4">
       <StoreButton
         href={downloadLinks.iosUrl}
         icon={appStoreIcon}
@@ -106,6 +106,6 @@ export function DownloadButtons({ downloadLinks, variant }: DownloadButtonsProps
         tone="secondary"
         variant={variant}
       />
-    </>
+    </div>
   );
 }
