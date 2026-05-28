@@ -2,7 +2,18 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { siteConfig } from "@/lib/site";
+import {
+  fallbackContactInfo,
+  getContactInfo,
+  type ContactInfo,
+} from "@/lib/contact-info";
+import {
+  fallbackSocialLinks,
+  getSocialLinks,
+  SocialLink,
+  SocialPlatform,
+} from "@/lib/social-links";
+import { useEffect, useState } from "react";
 
 type FooterLink = {
   label: string;
@@ -23,7 +34,7 @@ type FooterVariant = {
 
 const footerVariants: Record<string, FooterVariant> = {
   home: {
-    lead: "Connecting families across borders since 2018. Quality international calling you can trust.",
+    lead: "Quality international calling you can trust.",
     columns: [
       {
         title: "Brand",
@@ -152,10 +163,9 @@ function getVariant(pathname: string) {
   return footerVariants.home;
 }
 
-const socialLinks = [
-  {
+const socialIconMap: Record<SocialPlatform, { icon: React.ReactNode; label: string }> = {
+  instagram: {
     label: "Instagram",
-    href: siteConfig.social.instagram,
     icon: (
       <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="none">
         <rect x="5" y="5" width="14" height="14" rx="4" stroke="currentColor" strokeWidth="1.8" />
@@ -164,9 +174,8 @@ const socialLinks = [
       </svg>
     ),
   },
-  {
+  twitter: {
     label: "Twitter",
-    href: siteConfig.social.twitter,
     icon: (
       <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="none">
         <path
@@ -178,32 +187,90 @@ const socialLinks = [
       </svg>
     ),
   },
-  {
+  linkedin: {
     label: "LinkedIn",
-    href: siteConfig.social.linkedin,
     icon: (
       <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="none">
         <path d="M6.4 10.1v7.2M6.4 7.2v.02M10.4 17.3v-7.2M10.4 13.2c.5-1.9 1.6-3.2 3.5-3.2 2.3 0 3.7 1.5 3.7 4.3v3" stroke="currentColor" strokeLinecap="round" strokeWidth="1.8" />
       </svg>
     ),
   },
-];
+  facebook: {
+    label: "Facebook",
+    icon: (
+      <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M14.2 8.2h2.2V5.1c-.38-.05-1.68-.16-3.19-.16-3.16 0-5.32 1.92-5.32 5.45v3.07H4.5v3.45h3.39V25h4.15v-8.09h3.25l.52-3.45h-3.77v-2.73c0-1 .28-1.68 2.16-1.68Z"
+          fill="currentColor"
+        />
+      </svg>
+    ),
+  },
+  tiktok: {
+    label: "TikTok",
+    icon: (
+      <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M14.5 4.8c.52 2.73 2.1 4.42 4.5 4.6v3.34a7.56 7.56 0 0 1-4.4-1.42v4.86c0 3.63-2.34 5.82-5.47 5.82-2.9 0-5.13-2.03-5.13-4.89 0-3.2 2.47-5.1 5.8-4.78v3.42c-1.3-.2-2.22.35-2.22 1.34 0 .86.67 1.43 1.55 1.43 1.03 0 1.75-.62 1.75-2.1V4.8h3.62Z"
+          fill="currentColor"
+        />
+      </svg>
+    ),
+  },
+  youtube: {
+    label: "YouTube",
+    icon: (
+      <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M21.3 8.2a3.08 3.08 0 0 0-2.17-2.18C17.22 5.5 12 5.5 12 5.5s-5.22 0-7.13.52A3.08 3.08 0 0 0 2.7 8.2 32.1 32.1 0 0 0 2.2 12a32.1 32.1 0 0 0 .5 3.8 3.08 3.08 0 0 0 2.17 2.18c1.91.52 7.13.52 7.13.52s5.22 0 7.13-.52a3.08 3.08 0 0 0 2.17-2.18 32.1 32.1 0 0 0 .5-3.8 32.1 32.1 0 0 0-.5-3.8ZM10 15.5v-7l6 3.5-6 3.5Z"
+          fill="currentColor"
+        />
+      </svg>
+    ),
+  },
+};
 
-const foundingYear = 2024;
+const foundingYear = 2018;
 
 export function SiteFooter() {
   const pathname = usePathname();
+  const [socialLinks, setSocialLinks] =
+    useState<SocialLink[]>(fallbackSocialLinks);
   const variant = getVariant(pathname);
   const titleClassName = variant.titleClassName ?? "text-[1.05rem] text-white";
   const currentYear = new Date().getFullYear();
+  const lead =
+    variant === footerVariants.home
+      ? `Connecting families across borders since ${foundingYear}-${currentYear}. ${variant.lead}`
+      : variant.lead;
+
+  const [contact, setContact] =
+    useState<ContactInfo>(fallbackContactInfo);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    Promise.all([getSocialLinks(), getContactInfo()]).then(
+      ([links, contactInfo]) => {
+        if (!isMounted) return;
+
+        setSocialLinks(links);
+        setContact(contactInfo);
+      }
+    );
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <footer className="w-full border-t border-[#2a2a2a] bg-[#0d0d0d] pb-10 pt-14 sm:pt-20">
       <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
-        <div className="grid justify-items-center gap-9 text-center sm:grid-cols-2 md:gap-12 xl:grid-cols-[1.25fr_repeat(3,minmax(0,1fr))] xl:text-left xl:justify-items-start">
+        <div className="grid justify-items-center gap-9 text-center sm:grid-cols-2 md:gap-12 xl:grid-cols-[1.25fr_repeat(4,minmax(0,1fr))] xl:text-left xl:justify-items-start">
           <div className="max-w-[280px]">
             <h2 className="text-lg font-semibold tracking-[-0.03em] text-white">Natcall</h2>
-            <p className="mt-4 text-[13px] leading-6 text-[#aaaaaa]">{variant.lead}</p>
+            <p className="mt-4 text-[13px] leading-6 text-[#aaaaaa]">{lead}</p>
           </div>
 
           {variant.columns.map((column) => (
@@ -218,6 +285,16 @@ export function SiteFooter() {
               </div>
             </div>
           ))}
+
+          <div className="w-full xl:w-auto">
+            <h2 className={`font-semibold ${titleClassName}`}>Contact</h2>
+            <div className="mt-6 grid gap-2 text-[13px] text-[#aaaaaa]">
+              <span>Address: {contact.address}</span>
+              <span>Phone: {contact.phone}</span>
+              <span>Support Email: {contact.supportEmail}</span>
+              <span>Support WhatsApp: {contact.supportWhatsapp}</span>
+            </div>
+          </div>
         </div>
 
         <div className="mt-10 flex flex-col items-center gap-4 border-t border-[#2a2a2a] pt-8 text-center sm:mt-12 lg:flex-row lg:justify-between lg:text-left">
@@ -225,20 +302,38 @@ export function SiteFooter() {
             Copyright {foundingYear}-{currentYear} Natcall. All rights
             reserved.
           </p>
-
           <div className="flex items-center gap-3 text-[#9d9d9d]">
-            {socialLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                aria-label={link.label}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 transition hover:border-[#f6c617]/60 hover:text-[#f6c617]"
-              >
-                {link.icon}
-              </a>
-            ))}
+            {socialLinks.map((link) => {
+              const social = socialIconMap[link.platform];
+              const href = link.url.trim();
+
+              if (!href) {
+                return (
+                  <span
+                    key={link.platform}
+                    aria-label={`${social.label} link not set`}
+                    aria-disabled="true"
+                    title={`${social.label} link not set`}
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-[#6f6f6f]"
+                  >
+                    {social.icon}
+                  </span>
+                );
+              }
+
+              return (
+                <a
+                  key={link.platform}
+                  href={href}
+                  aria-label={social.label}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 transition hover:border-[#f6c617]/60 hover:text-[#f6c617]"
+                >
+                  {social.icon}
+                </a>
+              );
+            })}
 
             {variant.rightIcons ? (
               <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10">

@@ -1,14 +1,17 @@
-import Link from "next/link";
 import Image from "next/image";
-import { CookieBanner } from "@/components/cookie-banner";
+import { DownloadButtons } from "@/components/download-buttons";
+import { HeroBackgroundMedia } from "@/components/hero-background-media";
 import { HeroParallax } from "@/components/hero-parallax";
+import { PopularDestinationsCarousel } from "@/components/popular-destinations-carousel";
 import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
+import { getHeroMedia } from "@/lib/hero-media";
+import { getDownloadLinks } from "@/lib/download-links";
+import { getPricingRates } from "@/lib/pricing-rates";
 import {
   createMetadata,
   features,
   getAppStoreRating,
   howItWorks,
-  pricingRates,
   testimonials,
   trustMarks,
 } from "@/lib/site";
@@ -241,22 +244,17 @@ const securityCards = [
 ];
 
 export default async function HomePage() {
-  const appStoreRating = await getAppStoreRating();
+  const [appStoreRating, heroMedia, downloadLinks, pricingRates] = await Promise.all([
+    getAppStoreRating(),
+    getHeroMedia(),
+    getDownloadLinks(),
+    getPricingRates(),
+  ]);
 
   return (
     <main className="pb-16">
       <section className="relative isolate overflow-hidden">
-        <video
-          className="absolute inset-0 -z-30 h-full w-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-hidden="true"
-        >
-          <source src="/videos/hero-smiling-phone-call.mp4" type="video/mp4" />
-        </video>
+        <HeroBackgroundMedia heroMedia={heroMedia} />
         <div className="absolute inset-0 -z-20 bg-[#111111]/62" />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(17,17,17,0.95)_0%,rgba(17,17,17,0.78)_44%,rgba(17,17,17,0.46)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-[#111111] to-transparent" />
@@ -307,58 +305,7 @@ export default async function HomePage() {
 
           <div className="mt-8 grid w-full gap-3 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-4 lg:justify-start">
             <Reveal delay={0.35}>
-              <Link
-                href="/#download"
-                className="btn-premium-secondary inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#383838] bg-[#1c1c1c] px-8 py-3 text-sm font-medium text-white sm:w-auto"
-              >
-                <svg
-                  aria-hidden="true"
-                  className="h-6 w-6"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                >
-                  <path
-                    d="M12.765 9.558c-.015-1.642 1.342-2.426 1.403-2.463-.767-1.118-1.956-1.271-2.38-1.289-1.012-.106-1.978.6-2.49.6-.525 0-1.318-.585-2.17-.57-1.114.017-2.16.663-2.732 1.663-1.184 2.05-.301 5.06.833 6.698.567.802 1.228 1.696 2.094 1.664.848-.035 1.165-.54 2.17-.54.995 0 1.293.54 2.178.52.91-.015 1.485-.814 2.032-1.623.656-.92.918-1.826.928-1.872-.02-.007-1.76-.672-1.796-2.788Z"
-                    fill="currentColor"
-                  />
-                  <path
-                    d="M11.637 5.072c.455-.57.767-1.346.68-2.135-.66.03-1.485.456-1.96 1.011-.423.492-.8 1.3-.703 2.058.74.055 1.5-.373 1.983-.934Z"
-                    fill="currentColor"
-                  />
-                </svg>
-                App Store
-              </Link>
-            </Reveal>
-
-            <Reveal delay={0.4}>
-              <Link
-                href="/#download"
-                aria-label="Open Android download"
-                className="btn-premium-secondary inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#383838] bg-[#1c1c1c] px-8 py-3 text-sm font-medium text-white sm:w-auto"
-              >
-                <svg
-                  aria-hidden="true"
-                  className="h-6 w-6"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                >
-                  <path
-                    d="M3.8 3.1 11.8 8.85 3.8 14.9V3.1Z"
-                    fill="currentColor"
-                  />
-                  <path
-                    d="M11.8 8.85 14.2 7.2c.42-.3.42-.92 0-1.22L12 4.4 9.5 6.22l2.3 2.63Z"
-                    fill="currentColor"
-                    opacity="0.78"
-                  />
-                  <path
-                    d="M11.8 8.85 14.2 10.5c.42.3.42.92 0 1.22L12 13.3 9.5 11.48l2.3-2.63Z"
-                    fill="currentColor"
-                    opacity="0.58"
-                  />
-                </svg>
-                Play Store
-              </Link>
+              <DownloadButtons downloadLinks={downloadLinks} variant="hero" />
             </Reveal>
           </div>
         </div>
@@ -370,6 +317,8 @@ export default async function HomePage() {
         </Reveal>
         </div>
       </section>
+
+      <PopularDestinationsCarousel />
 
       <section className="border-y border-[#2a2a2a] bg-[#0d0d0d] py-6 sm:py-8">
         <Reveal>
@@ -386,10 +335,6 @@ export default async function HomePage() {
             ))}
           </div>
         </Reveal>
-      </section>
-
-      <section className="mx-auto w-full max-w-[1200px] px-4 pt-4 sm:px-6 lg:px-8">
-        <CookieBanner />
       </section>
 
       <section className="mx-auto w-full max-w-[1200px] px-4 pb-14 pt-14 sm:px-6 sm:pb-20 sm:pt-20 lg:px-8">
@@ -444,15 +389,14 @@ export default async function HomePage() {
       >
         <div className="absolute right-[-128px] top-[-128px] h-64 w-64 rounded-full bg-[#f5c518]/5 blur-3xl" />
         <Reveal>
-          <div className="relative grid items-center gap-12 md:grid-cols-2">
-            <div className="mx-auto flex max-w-[520px] flex-col gap-4 text-center lg:mx-0 lg:text-left">
+          <div className="relative mx-auto flex max-w-[720px] flex-col items-center gap-4 text-center">
               <h2 className="text-[clamp(2.25rem,4vw,36px)] font-extrabold leading-[1.2] tracking-[-0.01em] text-white">
                 Transparent Pricing
               </h2>
               <p className="text-[16px] leading-[1.6] text-[#aaaaaa]">
                 No hidden fees, no connection charges, no expiry on credits.
                 <br />
-                Pay only for the minutes you use.
+                Final provider rates will be updated here once confirmed.
               </p>
               <ul className="grid gap-4 text-[15px] tracking-[0.01em] text-white">
                 {[
@@ -460,7 +404,7 @@ export default async function HomePage() {
                   "Real-time balance updates",
                   "Credits never expire",
                 ].map((item) => (
-                  <li key={item} className="flex items-center justify-center gap-3 lg:justify-start">
+                  <li key={item} className="flex items-center justify-center gap-3">
                     <span className="inline-flex h-4 w-4 items-center justify-center rounded-full border border-[#f6c617] text-[#f6c617]">
                       <span className="block h-1.5 w-1.5 rounded-full bg-[#f6c617]" />
                     </span>
@@ -468,44 +412,6 @@ export default async function HomePage() {
                   </li>
                 ))}
               </ul>
-            </div>
-
-            <div className="shimmer-border rounded-xl border border-[#f5c518]/30 bg-[#242424] p-5 sm:p-10">
-              <div className="mb-8 text-center">
-                <p className="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-[#f6c617]">
-                  Most Popular
-                </p>
-                <div className="flex items-baseline justify-center gap-2">
-                  <strong className="text-4xl font-bold text-white sm:text-5xl">$6</strong>
-                  <span className="text-[#aaaaaa]">/ 60 mins</span>
-                </div>
-                <p className="mt-2 text-sm text-[#aaaaaa]">
-                  Average rate of $0.10/min
-                </p>
-              </div>
-
-              <div className="mb-8 flex flex-wrap gap-2">
-                {["+$5", "+$10", "+$20", "+$50"].map((amount, index) => (
-                  <span
-                    key={amount}
-                    className={`inline-flex min-w-[72px] flex-1 items-center justify-center rounded-full border px-3 py-2 text-xs ${
-                      index === 0
-                        ? "border-[#f5c518] text-[#f5c518]"
-                        : "border-[#383838] text-white"
-                    }`}
-                  >
-                    {amount}
-                  </span>
-                ))}
-              </div>
-
-              <Link
-                href="/#download"
-                className="btn-premium-primary inline-flex w-full items-center justify-center rounded-full bg-[#f6c617] py-3 text-base font-bold text-black sm:text-lg"
-              >
-                Start Calling Now
-              </Link>
-            </div>
           </div>
         </Reveal>
 
@@ -541,7 +447,7 @@ export default async function HomePage() {
                       {rate.carrier}
                     </td>
                     <td className="px-5 py-4 text-sm font-semibold text-white">
-                      Up to {rate.savings}
+                      {rate.savings}
                     </td>
                   </tr>
                 ))}
@@ -729,20 +635,7 @@ export default async function HomePage() {
         </p>
         <div className="mt-8 grid gap-3 sm:mt-10 sm:flex sm:flex-wrap sm:justify-center sm:gap-4">
           <Reveal delay={0.1}>
-            <Link
-              href="/#download"
-              className="btn-premium-primary inline-flex w-full items-center justify-center rounded-full bg-[#f6c617] px-10 py-3 text-base font-semibold text-black sm:w-auto sm:py-2 sm:text-lg"
-            >
-              Download for iOS
-            </Link>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <Link
-              href="/#download"
-              className="btn-premium-secondary inline-flex w-full items-center justify-center rounded-full border border-[#383838] bg-[#1c1c1c] px-10 py-3 text-base font-semibold text-white sm:w-auto sm:py-2 sm:text-lg"
-            >
-              Get it on Android
-            </Link>
+            <DownloadButtons downloadLinks={downloadLinks} variant="cta" />
           </Reveal>
         </div>
       </section>

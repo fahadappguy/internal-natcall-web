@@ -69,31 +69,6 @@ test.describe('NatCall public website - landing page QA suite', () => {
     await expect(page.getByRole('heading', { name: /^Ready to Call Home\?$/i })).toBeVisible();
   });
 
-  test('TC_006 - Cookie banner visibility', async ({ page }) => {
-    // Expected: first-time visitors see the cookie notice with Accept All and Decline actions.
-    await expect(
-      page.getByText(/^We use cookies to ensure you get the best experience on our website\./i),
-    ).toBeVisible();
-    await expect(page.getByRole('button', { name: /^Accept All$/i })).toBeVisible();
-    await expect(page.getByRole('button', { name: /^Decline$/i })).toBeVisible();
-  });
-
-  test('TC_007 - Accept All cookie action hides banner', async ({ page }) => {
-    // Expected: clicking Accept All saves consent and removes the cookie banner.
-    await page.getByRole('button', { name: /^Accept All$/i }).click();
-
-    await expect(page.getByRole('button', { name: /^Accept All$/i })).toBeHidden();
-    await expect(page.getByRole('button', { name: /^Decline$/i })).toBeHidden();
-  });
-
-  test('TC_008 - Decline cookie action hides banner', async ({ page }) => {
-    // Expected: clicking Decline saves rejected optional consent and removes the cookie banner.
-    await page.getByRole('button', { name: /^Decline$/i }).click();
-
-    await expect(page.getByRole('button', { name: /^Accept All$/i })).toBeHidden();
-    await expect(page.getByRole('button', { name: /^Decline$/i })).toBeHidden();
-  });
-
   test('TC_009 - Hero pricing and rating stats visibility', async ({ page }) => {
     // Expected: hero shows the starting per-minute price and App Store rating statistic.
     await expect(page.getByText(/^\$0\.02$/i)).toBeVisible();
@@ -132,7 +107,7 @@ test.describe('NatCall public website - landing page QA suite', () => {
     await expect(
       table.getByRole('row', { name: /^Country Natcall Rate Typical Carrier Savings$/i }),
     ).toBeVisible();
-    await expect(table.getByRole('row', { name: /^Nigeria \$0\.07\/min \$0\.89\/min Up to 92%$/i })).toBeVisible();
+    await expect(table.getByRole('row', { name: /^Eritrea \$0\.07\/min \$0\.89\/min Up to 92%$/i })).toBeVisible();
     await expect(table.getByRole('row', { name: /^Ghana \$0\.08\/min \$0\.75\/min Up to 89%$/i })).toBeVisible();
     await expect(table.getByRole('row', { name: /^India \$0\.03\/min \$0\.35\/min Up to 91%$/i })).toBeVisible();
     await expect(table.getByRole('row', { name: /^Ethiopia \$0\.12\/min \$1\.05\/min Up to 89%$/i })).toBeVisible();

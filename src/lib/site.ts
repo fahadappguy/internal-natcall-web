@@ -27,6 +27,9 @@ export const siteConfig = {
     instagram: "https://www.instagram.com/natcallapp",
     twitter: "https://twitter.com/natcallapp",
     linkedin: "https://www.linkedin.com/company/natcall",
+    facebook: "https://www.facebook.com/natcallapp",
+    tiktok: "https://www.tiktok.com/@natcallapp",
+    youtube: "https://www.youtube.com/@natcallapp",
   },
 };
 
@@ -155,44 +158,11 @@ export const features: Array<{ icon: FeatureIcon; title: string; copy: string }>
   },
 ];
 
-export const pricingRates = [
-  {
-    country: "Nigeria",
-    natcall: "$0.07/min",
-    carrier: "$0.89/min",
-    savings: "92%",
-  },
-  {
-    country: "Ghana",
-    natcall: "$0.08/min",
-    carrier: "$0.75/min",
-    savings: "89%",
-  },
-  {
-    country: "India",
-    natcall: "$0.03/min",
-    carrier: "$0.35/min",
-    savings: "91%",
-  },
-  {
-    country: "Ethiopia",
-    natcall: "$0.12/min",
-    carrier: "$1.05/min",
-    savings: "89%",
-  },
-  {
-    country: "Philippines",
-    natcall: "$0.05/min",
-    carrier: "$0.49/min",
-    savings: "90%",
-  },
-];
-
 export const testimonials = [
   {
     quote: '"Finally an app that actually has clear lines to Lagos. Been using it for 6 months now!"',
     name: "Amara O.",
-    meta: "Calls Nigeria weekly",
+    meta: "Calls Eritrea weekly",
     photo: "/images/testimonials/amara-o.png",
   },
   {

@@ -205,6 +205,20 @@
     -webkit-mask-composite: xor;
     mask-composite: exclude;
   }
+
+  .animate-destination-float {
+    animation: destination-float 6s ease-in-out infinite;
+  }
+
+  @keyframes destination-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
 }
 
 @keyframes border-shimmer {

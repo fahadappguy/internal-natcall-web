@@ -92,7 +92,7 @@ export function HeroParallax() {
         <div className="flex h-full flex-col bg-[#111111] px-4 pb-5 pt-10 sm:px-6 sm:pb-6 sm:pt-12">
           <div className="mb-6 text-center sm:mb-8">
             <p className="text-xs text-[#aaaaaa]">Calling...</p>
-            <p className="mt-1 text-xl font-bold text-white">Nigeria</p>
+            <p className="mt-1 text-xl font-bold text-white">Eritrea</p>
           </div>
 
           <div className="grid grid-cols-3 place-items-center gap-3 sm:gap-4">

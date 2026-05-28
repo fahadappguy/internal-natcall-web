@@ -1,5 +1,6 @@
 import { ContactForm } from "@/components/contact-form";
 import { Reveal } from "@/components/reveal";
+import { getContactInfo } from "@/lib/contact-info";
 import { createMetadata } from "@/lib/site";
 
 export const metadata = createMetadata({
@@ -9,7 +10,9 @@ export const metadata = createMetadata({
   path: "/contact",
 });
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const contactInfo = await getContactInfo();
+
   return (
     <main className="px-4 pb-8 pt-0 sm:px-6 lg:px-8">
       <section className="mx-auto grid w-full max-w-[1320px] overflow-hidden rounded-b-[24px] bg-[#101010] shadow-[0_28px_90px_rgba(0,0,0,0.18)] lg:min-h-[calc(100vh-5rem)] lg:grid-cols-[minmax(0,0.98fr)_minmax(0,1.02fr)]">
@@ -59,7 +62,7 @@ export default function ContactPage() {
                     Direct support
                   </p>
                   <p className="mt-1 break-all text-[15px] font-bold text-white sm:text-[17px]">
-                    sadiomer02@gmail.com
+                    {contactInfo.supportEmail}
                   </p>
                 </div>
               </div>
@@ -67,20 +70,29 @@ export default function ContactPage() {
               <div className="mt-5 grid gap-3 border-t border-white/8 pt-5 sm:grid-cols-2">
                 <div>
                   <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[#777777]">
-                    Response
+                    Phone
                   </p>
                   <p className="mt-1 text-[15px] font-semibold text-[#d8d8d8]">
-                    Usually within 2 hours
+                    {contactInfo.phone}
                   </p>
                 </div>
                 <div>
                   <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[#777777]">
-                    Availability
+                    WhatsApp
                   </p>
                   <p className="mt-1 text-[15px] font-semibold text-[#d8d8d8]">
-                    Mon-Fri, 9am-6pm
+                    {contactInfo.supportWhatsapp}
                   </p>
                 </div>
+              </div>
+
+              <div className="mt-4 border-t border-white/8 pt-4">
+                <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[#777777]">
+                  Address
+                </p>
+                <p className="mt-1 text-[15px] font-semibold leading-6 text-[#d8d8d8]">
+                  {contactInfo.address}
+                </p>
               </div>
             </div>
           </Reveal>
