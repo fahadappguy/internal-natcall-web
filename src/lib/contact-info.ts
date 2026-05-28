@@ -1,4 +1,4 @@
-import { getAdminApiUrl } from "@/lib/admin-api";
+import { fetchAdminApi } from "@/lib/admin-api";
 
 export type ContactInfo = {
   address: string;
@@ -46,7 +46,7 @@ function normalizeContactInfo(data: unknown): ContactInfo {
 
 export async function getContactInfo(): Promise<ContactInfo> {
   try {
-    const response = await fetch(getAdminApiUrl("/api/web/contact-info"), {
+    const response = await fetchAdminApi("/api/web/contact-info", {
       cache: "no-store",
     });
 

@@ -1,4 +1,4 @@
-import { getAdminApiUrl } from "@/lib/admin-api";
+import { fetchAdminApi } from "@/lib/admin-api";
 
 export type PopularDestination = {
   id: string;
@@ -110,7 +110,7 @@ function normalizeDestinations(data: unknown): PopularDestination[] {
 
 export async function getPopularDestinations(): Promise<PopularDestination[]> {
   try {
-    const response = await fetch(getAdminApiUrl("/api/web/popular-destinations"), {
+    const response = await fetchAdminApi("/api/web/popular-destinations", {
       cache: "no-store",
     });
 

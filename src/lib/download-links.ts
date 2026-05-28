@@ -1,4 +1,4 @@
-import { getAdminApiUrl } from "@/lib/admin-api";
+import { fetchAdminApi } from "@/lib/admin-api";
 
 export type DownloadLinks = {
   iosUrl: string;
@@ -36,7 +36,7 @@ function normalizeDownloadLinks(data: unknown): DownloadLinks {
 
 export async function getDownloadLinks(): Promise<DownloadLinks> {
   try {
-    const response = await fetch(getAdminApiUrl("/api/web/download-links"), {
+    const response = await fetchAdminApi("/api/web/download-links", {
       cache: "no-store",
     });
 

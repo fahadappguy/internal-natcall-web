@@ -1,4 +1,4 @@
-import { getAdminApiUrl } from "@/lib/admin-api";
+import { fetchAdminApi } from "@/lib/admin-api";
 import { siteConfig } from "@/lib/site";
 
 export type SocialPlatform =
@@ -84,7 +84,7 @@ function normalizeSocialLinks(data: unknown): SocialLink[] {
 
 export async function getSocialLinks(): Promise<SocialLink[]> {
   try {
-    const response = await fetch(getAdminApiUrl("/api/web/social-links"), {
+    const response = await fetchAdminApi("/api/web/social-links", {
       cache: "no-store",
     });
 

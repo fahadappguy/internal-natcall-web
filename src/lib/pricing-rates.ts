@@ -1,4 +1,4 @@
-import { getAdminApiUrl } from "@/lib/admin-api";
+import { fetchAdminApi } from "@/lib/admin-api";
 
 export type PricingRate = {
   country: string;
@@ -27,7 +27,7 @@ const fallbackPricingRates: PricingRate[] = [
 
 export async function getPricingRates(): Promise<PricingRate[]> {
   try {
-    const response = await fetch(getAdminApiUrl("/api/web/pricing-rates"), {
+    const response = await fetchAdminApi("/api/web/pricing-rates", {
       cache: "no-store",
     });
 

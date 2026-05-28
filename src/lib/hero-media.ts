@@ -1,5 +1,5 @@
 import { connection } from "next/server";
-import { getAdminApiUrl } from "@/lib/admin-api";
+import { fetchAdminApi } from "@/lib/admin-api";
 
 export type HeroMedia = {
   mediaType: "video" | "image";
@@ -51,7 +51,7 @@ export async function getHeroMedia(): Promise<HeroMedia | null> {
   await connection();
 
   try {
-    const response = await fetch(getAdminApiUrl("/api/web/hero-media"), {
+    const response = await fetchAdminApi("/api/web/hero-media", {
       cache: "no-store",
     });
 
