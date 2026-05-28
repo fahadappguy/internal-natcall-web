@@ -1,4 +1,4 @@
-import { fetchAdminApi } from "@/lib/admin-api";
+import { fetchAdminApi, unwrapAdminCollection } from "@/lib/admin-api";
 
 export type PricingRate = {
   country: string;
@@ -35,8 +35,11 @@ export async function getPricingRates(): Promise<PricingRate[]> {
       return fallbackPricingRates;
     }
 
-    const data = (await response.json()) as RateCardResponse[];
-    const rates = data.map(normalizePricingRate).filter(Boolean) as PricingRate[];
+    const data = await response.json();
+    const rawRates = unwrapAdminCollection<RateCardResponse>(data);
+    const rates = (rawRates ?? [])
+      .map(normalizePricingRate)
+      .filter(Boolean) as PricingRate[];
 
     return rates.length ? rates : fallbackPricingRates;
   } catch {

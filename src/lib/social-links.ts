@@ -1,4 +1,4 @@
-import { fetchAdminApi } from "@/lib/admin-api";
+import { fetchAdminApi, unwrapAdminCollection } from "@/lib/admin-api";
 import { siteConfig } from "@/lib/site";
 
 export type SocialPlatform =
@@ -56,9 +56,11 @@ export const fallbackSocialLinks: SocialLink[] = [
 ];
 
 function normalizeSocialLinks(data: unknown): SocialLink[] {
-  if (!Array.isArray(data)) return fallbackSocialLinks;
+  const rawLinks = unwrapAdminCollection<SocialLinkResponse>(data);
 
-  const links = data
+  if (!rawLinks) return fallbackSocialLinks;
+
+  const links = rawLinks
     .map((item) => {
       if (!item || typeof item !== "object") return null;
 

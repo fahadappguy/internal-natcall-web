@@ -1,4 +1,4 @@
-import { fetchAdminApi } from "@/lib/admin-api";
+import { fetchAdminApi, unwrapAdminCollection } from "@/lib/admin-api";
 
 export type PopularDestination = {
   id: string;
@@ -95,9 +95,12 @@ function normalizeDestination(
 }
 
 function normalizeDestinations(data: unknown): PopularDestination[] {
-  if (!Array.isArray(data)) return defaultPopularDestinations;
+  const rawDestinations =
+    unwrapAdminCollection<PopularDestinationResponse>(data);
 
-  const destinations = data
+  if (!rawDestinations) return defaultPopularDestinations;
+
+  const destinations = rawDestinations
     .map((item, index) =>
       item && typeof item === "object"
         ? normalizeDestination(item as PopularDestinationResponse, index)
