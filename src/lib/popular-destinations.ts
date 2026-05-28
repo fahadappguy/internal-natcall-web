@@ -1,3 +1,5 @@
+import { getAdminApiUrl } from "@/lib/admin-api";
+
 export type PopularDestination = {
   id: string;
   country: string;
@@ -107,12 +109,8 @@ function normalizeDestinations(data: unknown): PopularDestination[] {
 }
 
 export async function getPopularDestinations(): Promise<PopularDestination[]> {
-  const adminUrl = process.env.NEXT_PUBLIC_ADMIN_URL?.replace(/\/+$/, "");
-
-  if (!adminUrl) return defaultPopularDestinations;
-
   try {
-    const response = await fetch(`${adminUrl}/api/web/popular-destinations`, {
+    const response = await fetch(getAdminApiUrl("/api/web/popular-destinations"), {
       cache: "no-store",
     });
 

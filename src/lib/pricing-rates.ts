@@ -1,3 +1,5 @@
+import { getAdminApiUrl } from "@/lib/admin-api";
+
 export type PricingRate = {
   country: string;
   natcall: string;
@@ -40,16 +42,6 @@ export async function getPricingRates(): Promise<PricingRate[]> {
   } catch {
     return fallbackPricingRates;
   }
-}
-
-function getAdminApiUrl(path: string) {
-  const adminUrl = process.env.NEXT_PUBLIC_ADMIN_URL?.replace(/\/+$/, "");
-
-  if (!adminUrl) {
-    return path;
-  }
-
-  return `${adminUrl}${path}`;
 }
 
 function normalizePricingRate(rate: RateCardResponse): PricingRate | null {

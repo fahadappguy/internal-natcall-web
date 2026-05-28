@@ -1,3 +1,5 @@
+import { getAdminApiUrl } from "@/lib/admin-api";
+
 export type ContactInfo = {
   address: string;
   phone: string;
@@ -43,12 +45,8 @@ function normalizeContactInfo(data: unknown): ContactInfo {
 }
 
 export async function getContactInfo(): Promise<ContactInfo> {
-  const adminUrl = process.env.NEXT_PUBLIC_ADMIN_URL?.replace(/\/+$/, "");
-
-  if (!adminUrl) return fallbackContactInfo;
-
   try {
-    const response = await fetch(`${adminUrl}/api/web/contact-info`, {
+    const response = await fetch(getAdminApiUrl("/api/web/contact-info"), {
       cache: "no-store",
     });
 

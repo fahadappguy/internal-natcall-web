@@ -1,3 +1,5 @@
+import { getAdminApiUrl } from "@/lib/admin-api";
+
 export type DownloadLinks = {
   iosUrl: string;
   androidUrl: string;
@@ -33,12 +35,8 @@ function normalizeDownloadLinks(data: unknown): DownloadLinks {
 }
 
 export async function getDownloadLinks(): Promise<DownloadLinks> {
-  const adminUrl = process.env.NEXT_PUBLIC_ADMIN_URL?.replace(/\/+$/, "");
-
-  if (!adminUrl) return fallbackDownloadLinks;
-
   try {
-    const response = await fetch(`${adminUrl}/api/web/download-links`, {
+    const response = await fetch(getAdminApiUrl("/api/web/download-links"), {
       cache: "no-store",
     });
 

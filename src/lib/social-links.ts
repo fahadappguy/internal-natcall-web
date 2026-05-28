@@ -1,3 +1,4 @@
+import { getAdminApiUrl } from "@/lib/admin-api";
 import { siteConfig } from "@/lib/site";
 
 export type SocialPlatform =
@@ -82,12 +83,8 @@ function normalizeSocialLinks(data: unknown): SocialLink[] {
 }
 
 export async function getSocialLinks(): Promise<SocialLink[]> {
-  const adminUrl = process.env.NEXT_PUBLIC_ADMIN_URL?.replace(/\/+$/, "");
-
-  if (!adminUrl) return fallbackSocialLinks;
-
   try {
-    const response = await fetch(`${adminUrl}/api/web/social-links`, {
+    const response = await fetch(getAdminApiUrl("/api/web/social-links"), {
       cache: "no-store",
     });
 

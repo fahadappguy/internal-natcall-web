@@ -1,4 +1,5 @@
 import { connection } from "next/server";
+import { getAdminApiUrl } from "@/lib/admin-api";
 
 export type HeroMedia = {
   mediaType: "video" | "image";
@@ -49,14 +50,8 @@ function normalizeHeroMedia(data: unknown): HeroMedia {
 export async function getHeroMedia(): Promise<HeroMedia | null> {
   await connection();
 
-  const adminUrl = process.env.NEXT_PUBLIC_ADMIN_URL?.replace(/\/+$/, "");
-
-  if (!adminUrl) {
-    return fallbackHeroMedia;
-  }
-
   try {
-    const response = await fetch(`${adminUrl}/api/web/hero-media`, {
+    const response = await fetch(getAdminApiUrl("/api/web/hero-media"), {
       cache: "no-store",
     });
 
