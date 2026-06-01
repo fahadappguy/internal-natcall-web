@@ -30,6 +30,14 @@ export const defaultPopularDestinations: PopularDestination[] = [
     isFeatured: true,
   },
   {
+    id: "nigeria",
+    country: "Nigeria",
+    flag: "NG",
+    flagUrl: "https://flagcdn.com/w160/ng.png",
+    description: "Clear, affordable calls to friends and family across Nigeria.",
+    isFeatured: false,
+  },
+  {
     id: "ethiopia",
     country: "Ethiopia",
     flag: "🇪🇹",
