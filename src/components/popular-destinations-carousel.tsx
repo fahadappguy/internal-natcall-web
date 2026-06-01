@@ -9,21 +9,29 @@ import {
 
 const visibleCardCount = 3;
 
-function getVisibleDestinations(
-  destinations: PopularDestination[],
-  startIndex: number
-) {
-  if (destinations.length <= visibleCardCount) return destinations;
+function getRotatingDestinations(destinations: PopularDestination[]) {
+  return destinations.filter((destination) => !destination.isFeatured);
+}
 
-  return Array.from({ length: visibleCardCount }, (_, offset) => {
-    const index = (startIndex + offset) % destinations.length;
-    return destinations[index];
-  });
+function getDestinationSlides(destinations: PopularDestination[]) {
+  return Array.from(
+    { length: Math.ceil(destinations.length / visibleCardCount) },
+    (_, slideIndex) =>
+      destinations.slice(
+        slideIndex * visibleCardCount,
+        (slideIndex + 1) * visibleCardCount
+      )
+  );
 }
 
 export function PopularDestinationsCarousel() {
+  const [featuredDestination, setFeaturedDestination] =
+    useState<PopularDestination>(
+      defaultPopularDestinations.find((destination) => destination.isFeatured) ??
+        defaultPopularDestinations[0]
+    );
   const [destinations, setDestinations] = useState<PopularDestination[]>(
-    defaultPopularDestinations
+    getRotatingDestinations(defaultPopularDestinations)
   );
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -33,7 +41,10 @@ export function PopularDestinationsCarousel() {
     getPopularDestinations().then((items) => {
       if (!isMounted) return;
 
-      setDestinations(items);
+      setFeaturedDestination(
+        items.find((destination) => destination.isFeatured) ?? items[0]
+      );
+      setDestinations(getRotatingDestinations(items));
       setActiveIndex(0);
     });
 
@@ -55,10 +66,11 @@ export function PopularDestinationsCarousel() {
   const activeDestination =
     destinations[activeIndex] ?? destinations[0] ?? defaultPopularDestinations[0];
 
-  const visibleDestinations = useMemo(
-    () => getVisibleDestinations(destinations, activeIndex),
-    [activeIndex, destinations]
+  const destinationSlides = useMemo(
+    () => getDestinationSlides(destinations),
+    [destinations]
   );
+  const activeSlideIndex = Math.floor(activeIndex / visibleCardCount);
 
   function goToPrevious() {
     setActiveIndex((current) =>
@@ -89,14 +101,14 @@ export function PopularDestinationsCarousel() {
           <div className="space-y-5">
             <div className="flex flex-wrap items-center gap-4">
               <div className="animate-destination-float inline-flex h-24 w-24 items-center justify-center overflow-hidden rounded-3xl bg-gradient-to-br from-[#111111] via-[#1f1f1f] to-[#272727] text-5xl shadow-[0_0_0_1px_rgba(246,198,23,0.12)]">
-                {activeDestination.flagUrl ? (
+                {featuredDestination.flagUrl ? (
                   <img
-                    src={activeDestination.flagUrl}
+                    src={featuredDestination.flagUrl}
                     alt=""
                     className="h-full w-full object-cover"
                   />
                 ) : (
-                  activeDestination.flag
+                  featuredDestination.flag
                 )}
               </div>
               <div>
@@ -104,76 +116,73 @@ export function PopularDestinationsCarousel() {
                   Featured route
                 </p>
                 <h3 className="mt-2 text-4xl font-semibold leading-[1.05] text-white sm:text-5xl">
-                  {activeDestination.country}
+                  {featuredDestination.country}
                 </h3>
               </div>
             </div>
 
             <div className="rounded-[28px] border border-[#2a2a2a] bg-[#111111]/80 p-6 text-[#d4d4d4] shadow-[inset_0_0_0_1px_rgba(246,198,23,0.08)]">
               <p className="text-lg leading-8 text-[#e5e5e5]">
-                {activeDestination.description}
+                {featuredDestination.description}
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-2">
-              {destinations.map((destination, index) => (
-                <button
-                  key={destination.id}
-                  type="button"
-                  onClick={() => setActiveIndex(index)}
-                  aria-label={`Show ${destination.country}`}
-                  className={`h-2.5 rounded-full transition-all ${
-                    index === activeIndex
-                      ? "w-8 bg-[#f6c617]"
-                      : "w-2.5 bg-white/20 hover:bg-white/40"
-                  }`}
-                />
-              ))}
-            </div>
           </div>
 
-          <div className="relative grid gap-4 pb-14">
-            {visibleDestinations.map((destination) => {
-              const destinationIndex = destinations.findIndex(
-                (item) => item.id === destination.id
-              );
-              const isActive = destination.id === activeDestination.id;
-
-              return (
-                <button
-                  key={destination.id}
-                  type="button"
-                  onClick={() => setActiveIndex(destinationIndex)}
-                  className={`rounded-[28px] border p-5 text-left transition-all duration-500 ${
-                    isActive
-                      ? "border-[#f6c617] bg-[#171717] shadow-[0_0_0_8px_rgba(246,198,23,0.06)]"
-                      : "border-[#2a2a2a] bg-[#121212] hover:border-[#f6c617]/50"
-                  }`}
+          <div className="relative overflow-hidden pb-14">
+            <div
+              className="flex transition-transform duration-700 ease-in-out"
+              style={{ transform: `translateX(-${activeSlideIndex * 100}%)` }}
+            >
+              {destinationSlides.map((slide, slideIndex) => (
+                <div
+                  key={`destination-slide-${slideIndex}`}
+                  className="grid w-full shrink-0 content-start gap-4"
                 >
-                  <div className="flex items-center gap-4">
-                    <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl bg-[#0f0f0f] text-3xl">
-                      {destination.flagUrl ? (
-                        <img
-                          src={destination.flagUrl}
-                          alt=""
-                          className="h-full w-full object-cover"
-                        />
-                      ) : (
-                        destination.flag
-                      )}
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-semibold text-white">
-                        {destination.country}
-                      </h4>
-                      <p className="text-sm leading-6 text-[#a7a7a7]">
-                        {destination.description}
-                      </p>
-                    </div>
-                  </div>
-                </button>
-              );
-            })}
+                  {slide.map((destination) => {
+                    const destinationIndex = destinations.findIndex(
+                      (item) => item.id === destination.id
+                    );
+                    const isActive = destination.id === activeDestination.id;
+
+                    return (
+                      <button
+                        key={destination.id}
+                        type="button"
+                        onClick={() => setActiveIndex(destinationIndex)}
+                        className={`rounded-[28px] border p-5 text-left transition-all duration-500 ${
+                          isActive
+                            ? "border-[#f6c617] bg-[#171717] shadow-[0_0_0_8px_rgba(246,198,23,0.06)]"
+                            : "border-[#2a2a2a] bg-[#121212] hover:border-[#f6c617]/50"
+                        }`}
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl bg-[#0f0f0f] text-3xl">
+                            {destination.flagUrl ? (
+                              <img
+                                src={destination.flagUrl}
+                                alt=""
+                                className="h-full w-full object-cover"
+                              />
+                            ) : (
+                              destination.flag
+                            )}
+                          </div>
+                          <div>
+                            <h4 className="text-lg font-semibold text-white">
+                              {destination.country}
+                            </h4>
+                            <p className="text-sm leading-6 text-[#a7a7a7]">
+                              {destination.description}
+                            </p>
+                          </div>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
 
             {destinations.length > 1 ? (
               <div className="absolute bottom-0 right-0 flex items-center gap-2">

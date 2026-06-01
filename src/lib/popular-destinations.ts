@@ -6,6 +6,7 @@ export type PopularDestination = {
   flag: string;
   flagUrl: string;
   description: string;
+  isFeatured: boolean;
 };
 
 type PopularDestinationResponse = {
@@ -15,6 +16,8 @@ type PopularDestinationResponse = {
   flagUrl?: unknown;
   flag_url?: unknown;
   description?: unknown;
+  isFeatured?: unknown;
+  is_featured?: unknown;
 };
 
 export const defaultPopularDestinations: PopularDestination[] = [
@@ -24,6 +27,7 @@ export const defaultPopularDestinations: PopularDestination[] = [
     flag: "🇪🇷",
     flagUrl: "https://flagcdn.com/w160/er.png",
     description: "Direct calls to Eritrea at local-friendly rates.",
+    isFeatured: true,
   },
   {
     id: "ethiopia",
@@ -31,6 +35,7 @@ export const defaultPopularDestinations: PopularDestination[] = [
     flag: "🇪🇹",
     flagUrl: "https://flagcdn.com/w160/et.png",
     description: "Crystal-clear connections across Ethiopia.",
+    isFeatured: false,
   },
   {
     id: "norway",
@@ -38,6 +43,7 @@ export const defaultPopularDestinations: PopularDestination[] = [
     flag: "🇳🇴",
     flagUrl: "https://flagcdn.com/w160/no.png",
     description: "Fast, reliable calls to Norway anytime.",
+    isFeatured: false,
   },
   {
     id: "sudan",
@@ -45,6 +51,7 @@ export const defaultPopularDestinations: PopularDestination[] = [
     flag: "🇸🇩",
     flagUrl: "https://flagcdn.com/w160/sd.png",
     description: "Affordable calling routes for families in Sudan.",
+    isFeatured: false,
   },
   {
     id: "kenya",
@@ -52,6 +59,7 @@ export const defaultPopularDestinations: PopularDestination[] = [
     flag: "🇰🇪",
     flagUrl: "https://flagcdn.com/w160/ke.png",
     description: "Clear international calls to Kenya with simple pricing.",
+    isFeatured: false,
   },
   {
     id: "united-kingdom",
@@ -59,6 +67,15 @@ export const defaultPopularDestinations: PopularDestination[] = [
     flag: "🇬🇧",
     flagUrl: "https://flagcdn.com/w160/gb.png",
     description: "Reliable calls to the UK for work, friends, and family.",
+    isFeatured: false,
+  },
+  {
+    id: "somalia",
+    country: "Somalia",
+    flag: "SO",
+    flagUrl: "https://flagcdn.com/w160/so.png",
+    description: "Stay connected with friends and family across Somalia.",
+    isFeatured: false,
   },
 ];
 
@@ -91,6 +108,7 @@ function normalizeDestination(
           ? data.flag_url.trim()
           : "",
     description: data.description.trim(),
+    isFeatured: Boolean(data.isFeatured ?? data.is_featured ?? false),
   };
 }
 
