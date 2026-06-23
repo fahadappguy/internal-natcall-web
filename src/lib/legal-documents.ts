@@ -1,4 +1,4 @@
-export type LegalDocumentSlug = "terms" | "privacy";
+export type LegalDocumentSlug = "terms" | "privacy" | "delete-account";
 
 export type LegalDocument = {
   id: string;
@@ -29,12 +29,55 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const legalDocumentsTable =
   process.env.NEXT_PUBLIC_SUPABASE_LEGAL_DOCUMENTS_TABLE ?? "legal_documents";
 
+const fallbackLegalContent: Record<LegalDocumentSlug, string> = {
+  terms: "",
+  privacy: "",
+  "delete-account": `Overview
+NatCall allows you to create an account to manage your credits, call history, and payment methods. If you no longer wish to use NatCall, you can request to delete your account and associated data at any time.
+
+How to Delete Your Account
+- Open the NatCall app.
+- Go to Account > Settings > Delete Account.
+- Confirm your choice.
+- Once confirmed, your account and personal data will be permanently deleted.
+
+What Happens When You Delete
+- Removed immediately:
+Your profile (name, email, phone number).
+Saved contacts inside the app.
+Call history records.
+Stored payment methods.
+- Retained temporarily (legal/compliance):
+Transaction records (e.g., top-ups, invoices) may be kept for up to 7 years as required by financial regulations.
+These records are stored securely and are not used for any other purpose.
+
+Impact on Credits & Subscriptions
+- Any remaining credits in your wallet will be forfeited once the account is deleted.
+- Active subscriptions or payments will be canceled.
+- You will not be charged after deletion.
+
+Additional Notes
+- If you signed up using Apple Pay, Google Pay, or Klarna, those payment tokens will be revoked.
+- If you used Sign in with Apple, your authorization token will also be revoked.
+- Deletion is permanent - once completed, your account cannot be restored.
+
+Support
+If you face any issues deleting your account in-app, you can contact us:
+- Email: support@natcall.com.`,
+};
+
+const fallbackLegalTitle: Record<LegalDocumentSlug, string> = {
+  terms: "Terms of Service",
+  privacy: "Privacy Policy",
+  "delete-account": "Delete Account",
+};
+
 export function getFallbackLegalDocument(slug: LegalDocumentSlug): LegalDocument {
   return {
     id: slug,
     slug,
-    title: slug === "terms" ? "Terms of Service" : "Privacy Policy",
-    content: "",
+    title: fallbackLegalTitle[slug],
+    content: fallbackLegalContent[slug],
     isPublished: true,
   };
 }

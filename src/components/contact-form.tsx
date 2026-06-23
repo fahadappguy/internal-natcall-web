@@ -3,26 +3,12 @@
 import type { FormEvent } from "react";
 import { useState } from "react";
 
-const receiverEmail = "sadiomer02@gmail.com";
-const contactEndpoint = `https://formsubmit.co/ajax/${receiverEmail}`;
+const contactEndpoint = "/api/contact";
 
 type SubmissionStatus = "idle" | "submitting" | "success" | "error";
 
 function cleanValue(formData: FormData, key: string) {
   return String(formData.get(key) ?? "").trim();
-}
-
-function formatSubmissionTime(date: Date) {
-  const datePart = date.toLocaleDateString("en-US", {
-    dateStyle: "medium",
-    timeZone: "UTC",
-  });
-  const timePart = date.toLocaleTimeString("en-US", {
-    timeStyle: "short",
-    timeZone: "UTC",
-  });
-
-  return `${datePart} — ${timePart} UTC`;
 }
 
 export function ContactForm() {
@@ -38,43 +24,6 @@ export function ContactForm() {
     const email = cleanValue(formData, "email");
     const inquiry = cleanValue(formData, "inquiry");
     const message = cleanValue(formData, "message");
-    const submittedAt = formatSubmissionTime(new Date());
-
-    const topic = inquiry || "General Support";
-    const subject = "Website Inquiry Alert — Natcall";
-    const notification = [
-      "Dear Team,",
-      "",
-      "A new inquiry has been submitted through the official Natcall website.",
-      "",
-      "Customer Information:",
-      `• Name: ${name}`,
-      `• Email: ${email}`,
-      "• Company: Natcall",
-      `• Inquiry Type: ${topic}`,
-      "",
-      "Customer Message:",
-      message,
-      "",
-      "Submission Time:",
-      submittedAt,
-      "",
-      "Please ensure timely follow-up and support assistance.",
-      "",
-      "Best regards,",
-      "Natcall Notification Service",
-    ].join("\n");
-
-    const payload = new FormData();
-    payload.append("_subject", subject);
-    payload.append("_template", "basic");
-    payload.append("_captcha", "false");
-    payload.append("_replyto", email);
-    payload.append(
-      "_autoresponse",
-      "Thanks for contacting Natcall. We received your message and our team will get back to you as soon as possible.",
-    );
-    payload.append("Natcall Website Inquiry", notification);
 
     setStatus("submitting");
     setStatusMessage("");
@@ -82,14 +31,19 @@ export function ContactForm() {
     try {
       const response = await fetch(contactEndpoint, {
         method: "POST",
-        body: payload,
         headers: {
+          "Content-Type": "application/json",
           Accept: "application/json",
         },
+        body: JSON.stringify({ name, email, inquiry, message }),
       });
 
       if (!response.ok) {
-        throw new Error("Contact request failed");
+        const data = (await response.json().catch(() => null)) as {
+          error?: string;
+        } | null;
+
+        throw new Error(data?.error || "Contact request failed");
       }
 
       setStatus("success");
@@ -97,10 +51,12 @@ export function ContactForm() {
         "Message sent successfully. The Natcall team will reply as soon as possible.",
       );
       form.reset();
-    } catch {
+    } catch (error) {
       setStatus("error");
       setStatusMessage(
-        "We could not send the message right now. Please email sadiomer02@gmail.com directly.",
+        error instanceof Error
+          ? `We could not send the message right now. ${error.message}`
+          : "We could not send the message right now. Please email support@natcall.com directly.",
       );
     }
   }

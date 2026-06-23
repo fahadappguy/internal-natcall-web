@@ -24,6 +24,11 @@ const aboutLinks = [
 
 const exploreLinks = [
   { href: "/faq", label: "FAQ", copy: "Answers to common questions" },
+  {
+    href: "/delete-account",
+    label: "Delete Account",
+    copy: "Request account and data deletion",
+  },
   { href: "/terms", label: "Terms of Service", copy: "Service rules and usage terms" },
   { href: "/privacy-policy", label: "Privacy Policy", copy: "How Natcall protects data" },
 ];

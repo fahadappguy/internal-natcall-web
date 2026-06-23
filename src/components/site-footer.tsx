@@ -54,6 +54,7 @@ const footerVariants: Record<string, FooterVariant> = {
         title: "Support",
         links: [
           { label: "Help Center", href: "/faq" },
+          { label: "Delete Account", href: "/delete-account" },
           { label: "Contact Us", href: "/contact" },
           { label: "FAQ", href: "/faq" },
         ],
@@ -81,6 +82,7 @@ const footerVariants: Record<string, FooterVariant> = {
         title: "Support",
         links: [
           { label: "FAQ", href: "/faq" },
+          { label: "Delete Account", href: "/delete-account" },
           { label: "Privacy Policy", href: "/privacy-policy" },
           { label: "Contact Us", href: "/contact" },
         ],
@@ -109,6 +111,7 @@ const footerVariants: Record<string, FooterVariant> = {
         title: "Support",
         links: [
           { label: "Help Center", href: "/faq" },
+          { label: "Delete Account", href: "/delete-account" },
           { label: "Contact", href: "/contact" },
           { label: "Status", href: "/contact" },
         ],
@@ -138,6 +141,7 @@ const footerVariants: Record<string, FooterVariant> = {
         title: "SUPPORT",
         links: [
           { label: "Help Center", href: "/faq" },
+          { label: "Delete Account", href: "/delete-account" },
           { label: "Contact Support", href: "/contact" },
           { label: "System Status", href: "/contact" },
         ],

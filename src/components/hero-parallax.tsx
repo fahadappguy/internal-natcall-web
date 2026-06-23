@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
@@ -83,42 +84,20 @@ export function HeroParallax() {
 
       <motion.div
         style={{ y: floatY, scale: floatScale }}
-        className="relative h-[390px] w-[195px] overflow-hidden rounded-[30px] border-[6px] border-[#2a2a2a] bg-black shadow-2xl sm:h-[440px] sm:w-[220px] lg:h-[500px] lg:w-[250px] lg:rounded-[40px] lg:border-[8px]"
+        className="relative h-[390px] w-[206px] overflow-hidden rounded-[30px] border-[6px] border-[#2a2a2a] bg-black shadow-2xl sm:h-[440px] sm:w-[232px] lg:h-[500px] lg:w-[266px] lg:rounded-[40px] lg:border-[8px]"
         transition={{ type: "spring", stiffness: 140, damping: 25 }}
       >
-        <div className="absolute top-0 flex h-8 w-full items-end justify-center bg-black pb-1">
-          <div className="h-4 w-20 rounded-full bg-black" />
-        </div>
-        <div className="flex h-full flex-col bg-[#111111] px-4 pb-5 pt-10 sm:px-6 sm:pb-6 sm:pt-12">
-          <div className="mb-6 text-center sm:mb-8">
-            <p className="text-xs text-[#aaaaaa]">Calling...</p>
-            <p className="mt-1 text-xl font-bold text-white">Eritrea</p>
+        <div className="absolute inset-0 bg-black p-2 sm:p-2.5 lg:p-3">
+          <div className="relative h-full w-full bg-black">
+            <Image
+              src="/images/mockups/natcall-dialpad-mobile.jpg"
+              alt="Natcall mobile app dialpad screen"
+              fill
+              preload
+              sizes="(min-width: 1024px) 226px, (min-width: 640px) 200px, 178px"
+              className="object-contain object-top"
+            />
           </div>
-
-          <div className="grid grid-cols-3 place-items-center gap-3 sm:gap-4">
-            {Array.from({ length: 6 }, (_, index) => (
-              <span
-                key={index}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#2a2a2a] bg-[#1c1c1c] text-sm font-bold text-white sm:h-12 sm:w-12"
-              >
-                {index + 1}
-              </span>
-            ))}
-          </div>
-
-          <span className="mx-auto mt-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#22c55e] text-white shadow-[0_18px_36px_rgba(37,196,91,0.3)] sm:h-16 sm:w-16">
-            <svg
-              aria-hidden="true"
-              className="h-5 w-5"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <path
-                d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2Z"
-                fill="currentColor"
-              />
-            </svg>
-          </span>
         </div>
       </motion.div>
     </div>

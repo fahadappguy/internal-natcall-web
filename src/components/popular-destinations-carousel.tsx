@@ -18,12 +18,12 @@ const visibleCardCount = 3;
 
 const nigeriaDestination =
   defaultPopularDestinations.find(
-    (destination) => destination.country === "Nigeria"
+    (destination) => destination.country === "Nigeria",
   ) ?? defaultPopularDestinations[0];
 
 function getOrderedDestinations(destinations: PopularDestination[]) {
   const routes = destinations.some(
-    (destination) => destination.country.toLowerCase() === "nigeria"
+    (destination) => destination.country.toLowerCase() === "nigeria",
   )
     ? [...destinations]
     : [...destinations, nigeriaDestination];
@@ -49,15 +49,15 @@ function getDestinationSlides(destinations: PopularDestination[]) {
     (_, slideIndex) =>
       destinations.slice(
         slideIndex * visibleCardCount,
-        (slideIndex + 1) * visibleCardCount
-      )
+        (slideIndex + 1) * visibleCardCount,
+      ),
   );
 }
 
 export function PopularDestinationsCarousel() {
   const reducedMotion = Boolean(useReducedMotion());
   const [destinations, setDestinations] = useState<PopularDestination[]>(
-    getOrderedDestinations(defaultPopularDestinations)
+    getOrderedDestinations(defaultPopularDestinations),
   );
   const [activeIndex, setActiveIndex] = useState(0);
   const [slideDirection, setSlideDirection] = useState<1 | -1>(1);
@@ -89,11 +89,13 @@ export function PopularDestinationsCarousel() {
   }, [destinations.length]);
 
   const activeDestination =
-    destinations[activeIndex] ?? destinations[0] ?? defaultPopularDestinations[0];
+    destinations[activeIndex] ??
+    destinations[0] ??
+    defaultPopularDestinations[0];
 
   const destinationSlides = useMemo(
     () => getDestinationSlides(destinations),
-    [destinations]
+    [destinations],
   );
   const activeSlideIndex = Math.floor(activeIndex / visibleCardCount);
   const visibleDestinations = destinationSlides[activeSlideIndex] ?? [];
@@ -101,7 +103,7 @@ export function PopularDestinationsCarousel() {
   function goToPrevious() {
     setSlideDirection(-1);
     setActiveIndex((current) =>
-      current === 0 ? destinations.length - 1 : current - 1
+      current === 0 ? destinations.length - 1 : current - 1,
     );
   }
 
@@ -120,7 +122,7 @@ export function PopularDestinationsCarousel() {
       <section className="mx-auto w-full max-w-[1200px] px-4 pb-14 pt-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-[clamp(2.25rem,4vw,36px)] font-extrabold leading-[1.2] tracking-[-0.01em] text-white">
-            Top calling destinations
+            Popular destinations
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-[#b6b6b6] sm:text-lg">
             Highlighting key regions like Eritrea, Nigeria, Ethiopia and more
@@ -223,7 +225,7 @@ export function PopularDestinationsCarousel() {
                 >
                   {visibleDestinations.map((destination) => {
                     const destinationIndex = destinations.findIndex(
-                      (item) => item.id === destination.id
+                      (item) => item.id === destination.id,
                     );
                     const isActive = destination.id === activeDestination.id;
 
